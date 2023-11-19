@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfre0m4ws4hf5"]
+[gd_scene load_steps=7 format=3 uid="uid://cfre0m4ws4hf5"]
 
 [ext_resource type="PackedScene" uid="uid://bg4yl8hc3tkmm" path="res://character_body_2d.tscn" id="1_twnvs"]
 [ext_resource type="AudioStream" uid="uid://cl70nnui4rhhf" path="res://Sounds/Music/Wasteland or Snowy area.mp3" id="2_kb7cl"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerData.gd" id="3_0jrjt"]
+[ext_resource type="Script" path="res://Scripts/Saves/SaveManager.gd" id="4_cfs63"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_06eco"]
 size = Vector2(1000, 20)
@@ -94,4 +96,9 @@ shape = SubResource("RectangleShape2D_wvah6")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_kb7cl")
 autoplay = true
-bus = &"Music"
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("3_0jrjt")
+
+[node name="SaveManager" type="Node" parent="Player"]
+script = ExtResource("4_cfs63")
