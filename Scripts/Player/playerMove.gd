@@ -14,6 +14,7 @@ var jump_held
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	#saveManager = get_tree().current_scene.get_node("SaveManager") Example for later
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -68,12 +69,11 @@ func _apply_gravity(delta):
 	
 
 func _jump(delta):
-	var acceleration = 1.08
-	var linear = 2500
+	var linear = 7000
 	if(is_on_ceiling()):
 		time_jumping = max_jump_time
 	if time_jumping < max_jump_time:
-		velocity.y -= linear*((max_jump_time-time_jumping)/max_jump_time)*delta
+		velocity.y -= linear*((pow(max_jump_time, .1)-pow(time_jumping,.1))/max_jump_time)*delta
 		time_jumping += delta
 
 func _accelerate_right(delta):
