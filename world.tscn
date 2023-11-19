@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfre0m4ws4hf5"]
+[gd_scene load_steps=6 format=3 uid="uid://cfre0m4ws4hf5"]
 
 [ext_resource type="PackedScene" uid="uid://cyb4hippeoqe8" path="res://character_body_2d.tscn" id="1_twnvs"]
 [ext_resource type="AudioStream" uid="uid://cl70nnui4rhhf" path="res://Sounds/Music/Wasteland or Snowy area.mp3" id="2_kb7cl"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="3_52qx8"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_06eco"]
 size = Vector2(1000, 20)
@@ -11,87 +12,103 @@ size = Vector2(459.5, 20)
 
 [node name="World" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_twnvs")]
+[node name="Player" parent="." instance=ExtResource("1_twnvs")]
 position = Vector2(232, 116)
 
 [node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(339, 184)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform"]
-position = Vector2(503, 560)
+position = Vector2(230, 0)
 scale = Vector2(0.458, 1)
 mesh = SubResource("QuadMesh_06eco")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
-position = Vector2(502, 560)
+position = Vector2(231, 0)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="Platform2" type="StaticBody2D" parent="."]
+position = Vector2(468, 118)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform2"]
-position = Vector2(266, 506)
+position = Vector2(230, 0)
 scale = Vector2(0.457, 1)
 mesh = SubResource("QuadMesh_06eco")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
-position = Vector2(265, 506)
+position = Vector2(231, 0)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="Platform3" type="StaticBody2D" parent="."]
+position = Vector2(71, 272)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform3"]
-position = Vector2(773.5, 443)
+position = Vector2(233, -3)
 scale = Vector2(0.459, 1)
 mesh = SubResource("QuadMesh_06eco")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
-position = Vector2(774, 443)
+position = Vector2(233, -3)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="Platform4" type="StaticBody2D" parent="."]
+position = Vector2(634, 268)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform4"]
-position = Vector2(249.5, 401)
+position = Vector2(230.5, -0.999969)
 scale = Vector2(0.459, 1)
 mesh = SubResource("QuadMesh_06eco")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4"]
-position = Vector2(249.5, 401)
+position = Vector2(230.5, -1)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="Platform5" type="StaticBody2D" parent="."]
+position = Vector2(590, 353)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform5"]
-position = Vector2(255.5, 297)
+position = Vector2(230.5, -2)
 scale = Vector2(0.459, 1)
 mesh = SubResource("QuadMesh_06eco")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform5"]
-position = Vector2(255.5, 297)
+position = Vector2(230, -2.00003)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="Platform6" type="StaticBody2D" parent="."]
+position = Vector2(155, 457)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform6"]
-position = Vector2(867.5, 354)
+position = Vector2(232.5, -3.99997)
 scale = Vector2(0.459, 1)
 mesh = SubResource("QuadMesh_06eco")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform6"]
-position = Vector2(867.5, 354)
+position = Vector2(232.5, -4)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="Platform7" type="StaticBody2D" parent="."]
+position = Vector2(-94, 372)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform7"]
-position = Vector2(808, 254)
+position = Vector2(230.5, -3.99998)
 scale = Vector2(0.459, 1)
 mesh = SubResource("QuadMesh_06eco")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform7"]
-position = Vector2(809, 254)
+position = Vector2(231.5, -4)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-41, 28)
 stream = ExtResource("2_kb7cl")
 autoplay = true
+max_distance = 171571.0
+attenuation = 0.901249
+panning_strength = 0.0
 bus = &"Music"
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(210, 17)
+script = ExtResource("3_52qx8")
+target = NodePath("../Player")
