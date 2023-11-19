@@ -5,6 +5,7 @@ signal hit
 @export var top_speed = 200
 var screen_size
 var time_jumping =0
+var max_jump_time = .66
 @export var terminal_velocity = 2000
 @export var g = 1
 var jump_primed = -1
@@ -67,9 +68,10 @@ func _apply_gravity(delta):
 	
 
 func _jump(delta):
-	var acceleration = 1.1
-	var linear = 2400
-	var max_jump_time = .66
+	var acceleration = 1.08
+	var linear = 2500
+	if(is_on_ceiling()):
+		time_jumping = max_jump_time
 	if time_jumping < max_jump_time:
 		velocity.y -= linear*((max_jump_time-time_jumping)/max_jump_time)*delta
 		time_jumping += delta
