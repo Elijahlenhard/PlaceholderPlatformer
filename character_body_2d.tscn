@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpifv0ansh6gn"]
+[gd_scene load_steps=5 format=3 uid="uid://bg4yl8hc3tkmm"]
 
-[ext_resource type="Script" path="res://playerMove.gd" id="1_87lo7"]
-[ext_resource type="Texture2D" uid="uid://dlgpm1uservkk" path="res://character_sprite.png" id="2_d8rfj"]
+[ext_resource type="Script" path="res://Scripts/Player/playerMove.gd" id="1_spfjk"]
+[ext_resource type="Texture2D" uid="uid://dlgpm1uservkk" path="res://Sprites/Player/character_sprite.png" id="2_rbtkd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ysnm3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_d8rfj")
+"texture": ExtResource("2_rbtkd")
 }],
 "loop": true,
 "name": &"walk",
@@ -18,7 +18,7 @@ animations = [{
 size = Vector2(36, 63)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_87lo7")
+script = ExtResource("1_spfjk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

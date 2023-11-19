@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfre0m4ws4hf5"]
 
-[ext_resource type="PackedScene" uid="uid://cpifv0ansh6gn" path="res://character_body_2d.tscn" id="1_twnvs"]
+[ext_resource type="PackedScene" uid="uid://bg4yl8hc3tkmm" path="res://character_body_2d.tscn" id="1_twnvs"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_06eco"]
 size = Vector2(1000, 20)
