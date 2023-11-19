@@ -20,15 +20,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	
-	_apply_gravity(delta)
+	apply_gravity(delta)
 	
 	if Input.is_action_pressed("move_right"):
-		_accelerate_right(delta)
+		accelerate_right(delta)
 
 	elif Input.is_action_pressed("move_left"):
-		_accelerate_left(delta)
+		accelerate_left(delta)
 	else:
-		_decelerate(delta, 1)
+		decelerate(delta, 1)
 		
 		
 	if Input.is_action_pressed("Jump"):
@@ -39,9 +39,7 @@ func _physics_process(delta):
 		jump_primed -=1
 	if ((jump_primed>0 && is_on_floor()) || jump_held):
 		jump_held = true
-		_jump(delta)
-			
-			
+		jump(delta)
 	else:
 		time_jumping = 0
 
@@ -62,13 +60,13 @@ func _physics_process(delta):
 	print_debug(velocity)
 	
 
-func _apply_gravity(delta):
+func apply_gravity(delta):
 	var linear = 1200
 	if !is_on_floor():
 		velocity.y += (linear*delta)*((terminal_velocity-velocity.y)/terminal_velocity)
 	
 
-func _jump(delta):
+func jump(delta):
 	var linear = 7000
 	if(is_on_ceiling()):
 		time_jumping = max_jump_time
@@ -76,23 +74,23 @@ func _jump(delta):
 		velocity.y -= linear*((pow(max_jump_time, .1)-pow(time_jumping,.1))/max_jump_time)*delta
 		time_jumping += delta
 
-func _accelerate_right(delta):
+func accelerate_right(delta):
 	var acceleration = 1.1
 	var linear = 20
 	if(velocity.x<0):
-		_decelerate(delta, 1)
+		decelerate(delta, 1)
 	elif(velocity.x<top_speed):
 		velocity.x = velocity.x*acceleration + linear
 		
-func _accelerate_left(delta):
+func accelerate_left(delta):
 	var acceleration = 1.1
 	var linear = -20
 	if(velocity.x>0):
-		_decelerate(delta, 1)
+		decelerate(delta, 1)
 	elif(velocity.x>-top_speed):
 		velocity.x = velocity.x*acceleration + linear
 
-func _decelerate(delta, rate):
+func decelerate(delta, rate):
 	var deceleration = .9
 	var linear = 20
 	if(abs(velocity.x) < linear):
