@@ -5,8 +5,10 @@ signal hit
 @export var top_speed = 200
 var screen_size
 var time_jumping =0
-@export var terminal_velocity = 500
+@export var terminal_velocity = 2000
 @export var g = 1
+var jump_primed = -1
+var jump_held
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +30,16 @@ func _physics_process(delta):
 		
 		
 	if Input.is_action_pressed("Jump"):
+		jump_primed = 3
+	else:
+		jump_held = false
+	if jump_primed>0:
+		jump_primed -=1
+	if ((jump_primed>0 && is_on_floor()) || jump_held):
+		jump_held = true
 		_jump(delta)
+			
+			
 	else:
 		time_jumping = 0
 
@@ -44,22 +55,20 @@ func _physics_process(delta):
 		$AnimatedSprite2D.flip_v = false
 		# See the note below about boolean assignment.
 		$AnimatedSprite2D.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		$AnimatedSprite2D.animation = "jump"
-		$AnimatedSprite2D.flip_v = velocity.y > 0
+
 		
 	print_debug(velocity)
 	
 
 func _apply_gravity(delta):
-	var linear = 600
+	var linear = 1200
 	if !is_on_floor():
-		velocity.y += linear*delta
+		velocity.y += (linear*delta)*((terminal_velocity-velocity.y)/terminal_velocity)
 	
 
 func _jump(delta):
 	var acceleration = 1.1
-	var linear = 1200
+	var linear = 2400
 	var max_jump_time = .66
 	if time_jumping < max_jump_time:
 		velocity.y -= linear*((max_jump_time-time_jumping)/max_jump_time)*delta

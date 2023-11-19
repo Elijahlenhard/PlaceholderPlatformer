@@ -1,28 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpifv0ansh6gn"]
+[gd_scene load_steps=5 format=3 uid="uid://cpifv0ansh6gn"]
 
 [ext_resource type="Script" path="res://playerMove.gd" id="1_87lo7"]
-[ext_resource type="Texture2D" uid="uid://jrkjylqja54p" path="res://box.png" id="2_hc8kw"]
-[ext_resource type="Texture2D" uid="uid://ubhmrikuhd5k" path="res://box2.png" id="3_trg7y"]
+[ext_resource type="Texture2D" uid="uid://dlgpm1uservkk" path="res://character_sprite.png" id="2_d8rfj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ysnm3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_hc8kw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_trg7y")
-}],
-"loop": true,
-"name": &"jump",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_trg7y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_hc8kw")
+"texture": ExtResource("2_d8rfj")
 }],
 "loop": true,
 "name": &"walk",
@@ -30,16 +15,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bsr8"]
-size = Vector2(50, 50)
+size = Vector2(36, 63)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_87lo7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2.5, 2.5)
+scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_ysnm3")
-animation = &"jump"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_5bsr8")
