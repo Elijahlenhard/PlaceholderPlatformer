@@ -73,18 +73,26 @@ func _physics_process(delta):
 
 	if velocity.length() > 0:
 		$AnimatedSprite2D.play()
-	else:
-		$AnimatedSprite2D.stop()
 		
 	move_and_slide()
 	
+	
+	#TODO WIP for animation calls going to cause problems later 
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_v = false
-		# See the note below about boolean assignment.
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+	if velocity.x == 0:
+		$AnimatedSprite2D.animation = "idle"
+	
+	$AnimatedSprite2D.flip_h = dash_direction.x < 0
+		
+	if Input.is_action_just_pressed("attack"):
+		var attack = load("res://Attack.tscn")
+		var attack_instance = attack.instantiate()
+		attack_instance.set_name("attack")
+		add_child(attack_instance)
+		attack_instance.init(position, $AnimatedSprite2D.flip_h)
 
-	print_debug(velocity)
+	#print_debug(velocity)
 	
 func apply_gravity(delta):
 	var linear = 1200
@@ -100,20 +108,20 @@ func jump(delta):
 		time_jumping += delta
 
 func run_right(delta):
-	var acceleration = 1.1
+	var multiplier = 1.1
 	var linear = 20
 	if(velocity.x<0||velocity.x>(top_speed+25)):
 		decelerate(delta, 2)
 	elif(velocity.x<top_speed):
-		velocity.x = velocity.x*acceleration + linear
+		velocity.x = velocity.x*multiplier + linear
 		
 func run_left(delta):
-	var acceleration = 1.1
+	var multiplier = 1.1
 	var linear = -20
 	if(velocity.x>0 ||velocity.x<-(top_speed+25)):
 		decelerate(delta, 2)
 	elif(velocity.x>-top_speed):
-		velocity.x = velocity.x*acceleration + linear
+		velocity.x = velocity.x*multiplier + linear
 
 func decelerate(delta, rate):
 	if(is_dashing):

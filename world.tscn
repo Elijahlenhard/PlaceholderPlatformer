@@ -16,7 +16,7 @@ size = Vector2(459.5, 20)
 position = Vector2(232, 116)
 
 [node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2(339, 184)
+position = Vector2(1009, 435)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform"]
 position = Vector2(230, 0)
@@ -52,7 +52,7 @@ position = Vector2(233, -3)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="Platform4" type="StaticBody2D" parent="."]
-position = Vector2(634, 268)
+position = Vector2(664, 225)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform4"]
 position = Vector2(230.5, -0.999969)
@@ -64,7 +64,7 @@ position = Vector2(230.5, -1)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="Platform5" type="StaticBody2D" parent="."]
-position = Vector2(590, 353)
+position = Vector2(-792, 374)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform5"]
 position = Vector2(230.5, -2)
@@ -76,7 +76,7 @@ position = Vector2(230, -2.00003)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="Platform6" type="StaticBody2D" parent="."]
-position = Vector2(155, 457)
+position = Vector2(416, 467)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform6"]
 position = Vector2(232.5, -3.99997)
@@ -109,6 +109,6 @@ panning_strength = 0.0
 bus = &"Music"
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(210, 17)
+position = Vector2(429, 253)
 script = ExtResource("3_52qx8")
 target = NodePath("../Player")

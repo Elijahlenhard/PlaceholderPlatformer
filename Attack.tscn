@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt0okr53j0s3"]
+
+[ext_resource type="Script" path="res://Attack.gd" id="1_x7k5r"]
+[ext_resource type="Texture2D" uid="uid://rfpf6yt3k2aj" path="res://Sprites/Attacks/sprite_0.png" id="2_p8ghp"]
+[ext_resource type="Texture2D" uid="uid://ddbyadb4r7wdm" path="res://Sprites/Attacks/sprite_1.png" id="3_hk0jg"]
+[ext_resource type="Texture2D" uid="uid://bnfh4w2p10lfr" path="res://Sprites/Attacks/sprite_2.png" id="4_n65fn"]
+[ext_resource type="Texture2D" uid="uid://8t5iit8777ec" path="res://Sprites/Attacks/sprite_3.png" id="5_arm7p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ohwc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p8ghp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hk0jg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_n65fn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_arm7p")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_ks0v7"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_x7k5r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(4.54747e-13, 5)
+rotation = -6.28319
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_2ohwc")
+script = SubResource("GDScript_ks0v7")
