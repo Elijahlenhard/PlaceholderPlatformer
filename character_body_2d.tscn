@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=3 uid="uid://cyb4hippeoqe8"]
+[gd_scene load_steps=33 format=3 uid="uid://cyb4hippeoqe8"]
 
-[ext_resource type="Script" path="res://Scripts/Player/playerMove.gd" id="1_spfjk"]
 [ext_resource type="Texture2D" uid="uid://062bv5v2rxqj" path="res://Sprites/Player/Idle/Idle-1.png" id="2_3vc47"]
 [ext_resource type="Texture2D" uid="uid://cld1jaqgw6gls" path="res://Sprites/Player/Running/Running0.png" id="2_4t3nb"]
 [ext_resource type="Texture2D" uid="uid://wgriilr0ddf4" path="res://Sprites/Player/Idle/Idle-2.png" id="3_dr2n3"]
@@ -11,6 +10,25 @@
 [ext_resource type="Texture2D" uid="uid://8ucy2hsibb0i" path="res://Sprites/Player/Running/Running3.png" id="5_yl00w"]
 [ext_resource type="Texture2D" uid="uid://b526ilvtn5c0b" path="res://Sprites/Player/Running/Running4.png" id="6_rrfvc"]
 [ext_resource type="Texture2D" uid="uid://dqkcpoao3d07a" path="res://Sprites/Player/Running/Running5.png" id="7_m11sf"]
+[ext_resource type="Script" path="res://Scripts/Player/playerMove.gd" id="11_qros4"]
+[ext_resource type="Script" path="res://Scripts/Player/animationHandler.gd" id="12_igc7c"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerState.gd" id="13_2j622"]
+[ext_resource type="Script" path="res://Scripts/Player/playerAttack.gd" id="14_1nvhh"]
+[ext_resource type="Texture2D" uid="uid://c0ksg3n14nt6n" path="res://Sprites/Player/Concept/FireForm1.png" id="15_eijc1"]
+[ext_resource type="Texture2D" uid="uid://oyvgob55whkr" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept1.png" id="15_k2r05"]
+[ext_resource type="Texture2D" uid="uid://bnofx5im6wiq4" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept2.png" id="16_3bvhe"]
+[ext_resource type="Texture2D" uid="uid://dmm0sw5bbsoit" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept3.png" id="17_861b3"]
+[ext_resource type="Texture2D" uid="uid://81lv02y23736" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept4.png" id="18_vjtp0"]
+[ext_resource type="Texture2D" uid="uid://bdewoghos61pc" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept5.png" id="19_svabf"]
+[ext_resource type="Texture2D" uid="uid://cc8tjnmqhy140" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept6.png" id="20_yjc51"]
+[ext_resource type="Texture2D" uid="uid://cn0hj6we0nl6o" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept7.png" id="21_3m14r"]
+[ext_resource type="Texture2D" uid="uid://co1ebuvs5mw8d" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept8.png" id="22_56ftf"]
+[ext_resource type="Texture2D" uid="uid://big7q0g4snu6p" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept9.png" id="23_xsyar"]
+[ext_resource type="Texture2D" uid="uid://c8fks73f4hkuh" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept10.png" id="24_akrhc"]
+[ext_resource type="Texture2D" uid="uid://dkvsju01mot7g" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept11.png" id="25_uikeb"]
+[ext_resource type="Texture2D" uid="uid://csnoojgxh4p8k" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept12.png" id="26_1f8wi"]
+[ext_resource type="Texture2D" uid="uid://b3jhpfxv7mf64" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept13.png" id="27_gqcvx"]
+[ext_resource type="Texture2D" uid="uid://d0v5h6f03blr3" path="res://Sprites/Player/Concept/FormChange/FormChangeConcept14.png" id="28_4fkfc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ysnm3"]
 animations = [{
@@ -56,10 +74,75 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bsr8"]
-size = Vector2(36, 81)
+size = Vector2(36, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j3g3o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_k2r05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3bvhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_861b3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_vjtp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_svabf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_yjc51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3m14r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_56ftf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_xsyar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_akrhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_uikeb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_1f8wi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_gqcvx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_4fkfc")
+}],
+"loop": false,
+"name": &"change_form",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_eijc1")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_4fkfc")
+}],
+"loop": true,
+"name": &"ice",
+"speed": 5.0
+}]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_spfjk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -69,5 +152,33 @@ sprite_frames = SubResource("SpriteFrames_ysnm3")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.5)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_5bsr8")
+
+[node name="PlayerMove" type="Node" parent="." node_paths=PackedStringArray("player", "animatedSprite", "state")]
+script = ExtResource("11_qros4")
+player = NodePath("..")
+animatedSprite = NodePath("../AnimatedSprite2D")
+state = NodePath("../PlayerState")
+
+[node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("state", "sprite", "tempSprite", "player")]
+script = ExtResource("12_igc7c")
+state = NodePath("../PlayerState")
+sprite = NodePath("../AnimatedSprite2D")
+tempSprite = NodePath("../TempCheck")
+player = NodePath("..")
+
+[node name="PlayerState" type="Node" parent="."]
+script = ExtResource("13_2j622")
+
+[node name="PlayerAttack" type="Node" parent="." node_paths=PackedStringArray("player", "state")]
+script = ExtResource("14_1nvhh")
+player = NodePath("..")
+state = NodePath("../PlayerState")
+
+[node name="TempCheck" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_j3g3o")
+animation = &"change_form"

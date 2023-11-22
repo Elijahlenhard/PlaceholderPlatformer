@@ -92,7 +92,7 @@ position = Vector2(232.5, -4)
 shape = SubResource("RectangleShape2D_wvah6")
 
 [node name="Platform7" type="StaticBody2D" parent="."]
-position = Vector2(-94, 372)
+position = Vector2(-97, 416)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform7"]
 position = Vector2(230.5, -3.99998)
@@ -106,6 +106,7 @@ shape = SubResource("RectangleShape2D_wvah6")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-41, 28)
 stream = ExtResource("2_kb7cl")
+autoplay = true
 max_distance = 171571.0
 attenuation = 0.901249
 panning_strength = 0.0

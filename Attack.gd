@@ -14,8 +14,12 @@ func _process(delta):
 	await($AnimatedSprite2D.animation_finished)
 	queue_free()
 
-func init(position_root, flip):
+func init(root_position, direction):
+	var flip = direction.x!=1
 	$AnimatedSprite2D.flip_h = flip
+	
+	
+	position = root_position
 	
 	if(!flip):
 		position.x +=50
