@@ -13,6 +13,9 @@ var is_dashing = false
 var dash_cd = 1.5
 var remaining_dash_cd = 0
 
+var can_wall_jump = false
+var time_since_wall = 0
+
 
 var changing_form = false
 var form = "fire"

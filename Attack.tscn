@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dt0okr53j0s3"]
 
-[ext_resource type="Script" path="res://Attack.gd" id="1_x7k5r"]
 [ext_resource type="Texture2D" uid="uid://bp1nglp3chx1p" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack1.png" id="2_qpmyf"]
 [ext_resource type="Texture2D" uid="uid://bsmyj3dr1202v" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack2.png" id="3_kgqdf"]
 [ext_resource type="Texture2D" uid="uid://j0it63f3n7ji" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack3.png" id="4_11jt4"]
 [ext_resource type="Texture2D" uid="uid://cljlfabxglhhy" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack4.png" id="5_l8doh"]
+[ext_resource type="Script" path="res://Scripts/Common/Attack.gd" id="6_s0xab"]
 [ext_resource type="Texture2D" uid="uid://d07y5fy42y7xr" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack5.png" id="6_w8uv5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2ohwc"]
@@ -45,7 +45,6 @@ func _process(delta):
 "
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_x7k5r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -54,3 +53,14 @@ rotation = -6.28319
 scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_2ohwc")
 script = SubResource("GDScript_ks0v7")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
+top_level = true
+polygon = PackedVector2Array(-33, -24, 8, -25, 26, 0, 12, 25, -33, 26)
+
+[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite")]
+script = ExtResource("6_s0xab")
+attack_node = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")

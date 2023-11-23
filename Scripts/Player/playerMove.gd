@@ -4,11 +4,10 @@ extends Node
 signal hit
 
 @export var player: CharacterBody2D
-@export var animatedSprite: AnimatedSprite2D
 @export var state: PlayerState
 
-@export var top_speed = 250
-@export var terminal_velocity = 2000
+@export var top_speed = 450
+@export var terminal_velocity = 2750
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,16 +36,23 @@ func _physics_process(delta):
 	if !Input.is_action_pressed("jump"):
 		state.jump_held = false
 	
-	if state.jump_primed>0:#if a jump is primed
-		state.jump_primed -=1#decrement jump primed var
+	
 		
-	#if I jump is primed and the player touches the floor call the jump function
+	#if  jump is primed and the player touches the floor call the jump function
 	#also checks if jump is currently held to handle holding jump key for higher jump.
-	if ((state.jump_primed>0 && player.is_on_floor()) || state.jump_held):
+	if ((state.jump_primed>0 && (player.is_on_floor()) ) || state.jump_held):
 		state.jump_held = true
+		state.jump_primed =0
 		jump(delta)
 	else:
 		state.time_jumping = 0
+		
+	if(player.is_on_wall()):
+		state.can_wall_jump = true
+	
+	if(state.jump_primed>0 && state.can_wall_jump && !player.is_on_floor()):
+		wall_jump(delta)
+	
 	
 	#if the dash key is hit and dash is off cool down call dash function
 	if(Input.is_action_just_pressed("dash") && state.remaining_dash_cd<=0):
@@ -63,26 +69,29 @@ func _physics_process(delta):
 			
 	if(state.remaining_dash_cd >0):
 		state.remaining_dash_cd -= delta
-
-	if player.velocity.length() > 0:
-		animatedSprite.play()
 		
 	player.move_and_slide()
-	
 
 	
 func apply_gravity(delta):
-	var linear = 1200
+	var linear = 2000
 	if (!player.is_on_floor()):
 		player.velocity.y += (linear*delta)*((terminal_velocity-player.velocity.y)/terminal_velocity)
 
 func jump(delta):
-	var linear = 7000
+	var linear = 15000
 	if(player.is_on_ceiling()):
 		state.time_jumping = state.max_jump_time
 	if state.time_jumping < state.max_jump_time:
 		player.velocity.y -= linear*((pow(state.max_jump_time, .1)-pow(state.time_jumping,.1))/state.max_jump_time)*delta
 		state.time_jumping += delta
+		
+func wall_jump(delta):
+	player.velocity.y = 0
+	var speed = Vector2(500, -750)
+	player.velocity.y+=speed.y
+	
+	player.velocity.x = speed.x*player.get_wall_normal().x
 
 func run_right(delta):
 	var multiplier = 1.1
@@ -115,6 +124,6 @@ func decelerate(delta, rate):
 		player.velocity.x = player.velocity.x*deceleration + linear
 
 func dash(delta):
-	player.velocity.x = 1000*state.direction.x
+	player.velocity.x = 1500*state.direction.x
 		
 	

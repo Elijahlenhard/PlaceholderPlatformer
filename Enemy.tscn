@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8ir2pi3xawgl"]
+
+[ext_resource type="Texture2D" uid="uid://dk76728k2nq2r" path="res://Sprites/Enemy/PlaceHolderEnemy.png" id="1_yc73l"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemyMove.gd" id="2_q63l5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8hpy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yc73l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5yrl"]
+size = Vector2(72, 138)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_di6f2"]
+radius = 37.0
+height = 138.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_h8hpy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_o5yrl")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_di6f2")
+
+[node name="EnemyMove" type="Node" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_q63l5")
+enemy = NodePath("..")
