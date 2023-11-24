@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dt0okr53j0s3"]
+
+[ext_resource type="Script" path="res://Attack.gd" id="1_x7k5r"]
+[ext_resource type="Texture2D" uid="uid://bp1nglp3chx1p" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack1.png" id="2_qpmyf"]
+[ext_resource type="Texture2D" uid="uid://bsmyj3dr1202v" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack2.png" id="3_kgqdf"]
+[ext_resource type="Texture2D" uid="uid://j0it63f3n7ji" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack3.png" id="4_11jt4"]
+[ext_resource type="Texture2D" uid="uid://cljlfabxglhhy" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack4.png" id="5_l8doh"]
+[ext_resource type="Texture2D" uid="uid://d07y5fy42y7xr" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack5.png" id="6_w8uv5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ohwc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qpmyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kgqdf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_11jt4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l8doh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_w8uv5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_ks0v7"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_x7k5r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1.36424e-12, 10)
+rotation = -6.28319
+scale = Vector2(4.5, 4.5)
+sprite_frames = SubResource("SpriteFrames_2ohwc")
+script = SubResource("GDScript_ks0v7")
