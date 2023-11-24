@@ -1,6 +1,6 @@
 extends Resource
 
-class_name PlayerData
+class_name WorldData
 
 @export var player_name: String = ""
 @export var level: int = 1

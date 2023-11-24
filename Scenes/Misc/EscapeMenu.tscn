@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://boixgvwwis80y"]
+
+[ext_resource type="Script" path="res://EscapeMenu.gd" id="1_ofbgl"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_ofbgl")
+
+[node name="SaveButton" type="Button" parent="."]
+offset_left = 576.0
+offset_top = 158.0
+offset_right = 776.0
+offset_bottom = 208.0
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="."]
+offset_left = 576.0
+offset_top = 226.0
+offset_right = 776.0
+offset_bottom = 276.0
+text = "Load"
+
+[node name="SettingsButton" type="Button" parent="."]
+offset_left = 576.0
+offset_top = 295.0
+offset_right = 776.0
+offset_bottom = 345.0
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="."]
+offset_left = 576.0
+offset_top = 435.0
+offset_right = 776.0
+offset_bottom = 485.0
+text = "Exit"
+
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_pressed"]
