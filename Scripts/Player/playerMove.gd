@@ -7,11 +7,15 @@ signal hit
 @export var state: PlayerState
 
 @export var top_speed = 450
-@export var terminal_velocity = 2750
+@export var terminal_velocity = 2500
+
+@export var jump_height = 1000000
+@export var jump_peak_time = 30
+var g = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	g = (2*jump_height)/(pow(jump_peak_time,2))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,7 +44,7 @@ func _physics_process(delta):
 		
 	#if  jump is primed and the player touches the floor call the jump function
 	#also checks if jump is currently held to handle holding jump key for higher jump.
-	if ((state.jump_primed>0 && (player.is_on_floor()) ) || state.jump_held):
+	if ((state.jump_primed>0 && (player.is_on_floor()) )|| state.jump_held):
 		state.jump_held = true
 		state.jump_primed =0
 		jump(delta)
@@ -62,7 +66,7 @@ func _physics_process(delta):
 		
 	if(state.is_dashing):
 		state.dash_time += delta
-		if (state.dash_time > .15):
+		if (state.dash_time > .1):
 			state.is_dashing = false
 			state.dash_time =0
 		player.velocity.y =0
@@ -70,21 +74,37 @@ func _physics_process(delta):
 	if(state.remaining_dash_cd >0):
 		state.remaining_dash_cd -= delta
 		
+	if(state.changing_form):
+		player.velocity.x=0
+		player.velocity.y=0
 	player.move_and_slide()
 
 	
 func apply_gravity(delta):
+	"""
+	var mod = 1
+	if(!state.jump_held && player.velocity.y<0):
+		mod = 3
+	if (!player.is_on_floor()):
+		player.velocity.y+= g*delta*mod
+	"""
 	var linear = 2000
 	if (!player.is_on_floor()):
 		player.velocity.y += (linear*delta)*((terminal_velocity-player.velocity.y)/terminal_velocity)
 
 func jump(delta):
-	var linear = 15000
+	var linear = 5.5
 	if(player.is_on_ceiling()):
 		state.time_jumping = state.max_jump_time
 	if state.time_jumping < state.max_jump_time:
-		player.velocity.y -= linear*((pow(state.max_jump_time, .1)-pow(state.time_jumping,.1))/state.max_jump_time)*delta
+		#player.velocity.y -= linear*((pow(state.max_jump_time, .1)-pow(state.time_jumping,.1))/state.max_jump_time)*delta
+		player.velocity.y -= linear/(delta+state.time_jumping)
 		state.time_jumping += delta
+	"""
+	player.velocity.y -= ((2*jump_height)/jump_peak_time)*delta
+	print_debug(player.velocity)
+	"""
+		
 		
 func wall_jump(delta):
 	player.velocity.y = 0

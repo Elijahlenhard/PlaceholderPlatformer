@@ -1,12 +1,7 @@
 class_name EnemyState
 extends Node
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+var run_direction
+var health = 100
+var dying = false
+var contact_damage = 1
