@@ -1,0 +1,120 @@
+[gd_scene load_steps=20 format=3 uid="uid://c8ir2pi3xawgl"]
+
+[ext_resource type="Texture2D" uid="uid://dc6153cm4yayi" path="res://Sprites/Enemy/EnemyRun1.png" id="1_c01xs"]
+[ext_resource type="Texture2D" uid="uid://cohw5kcv5bkmo" path="res://Sprites/Enemy/enemyDeath/enemyDeath1.png" id="1_ct0dh"]
+[ext_resource type="Texture2D" uid="uid://c6xjyno551565" path="res://Sprites/Enemy/enemyDeath/enemyDeath2.png" id="2_bkbfb"]
+[ext_resource type="Texture2D" uid="uid://bfgoewp81kbj7" path="res://Sprites/Enemy/EnemyRun2.png" id="2_ghn5s"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemyMove.gd" id="2_njnmm"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemyState.gd" id="3_4n1vb"]
+[ext_resource type="Texture2D" uid="uid://caj5m8dufcpde" path="res://Sprites/Enemy/enemyDeath/enemyDeath3.png" id="3_s2ror"]
+[ext_resource type="Texture2D" uid="uid://b7bdmdxl06wak" path="res://Sprites/Enemy/EnemyRun3.png" id="3_s51fj"]
+[ext_resource type="Texture2D" uid="uid://c4fif6jsbo1xj" path="res://Sprites/Enemy/EnemyRun4.png" id="4_godfl"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemyDamage.gd" id="4_oie1h"]
+[ext_resource type="Texture2D" uid="uid://cdxks0ipgdhvd" path="res://Sprites/Enemy/enemyDeath/enemyDeath4.png" id="4_qo2v4"]
+[ext_resource type="Texture2D" uid="uid://cgejomcjjamex" path="res://Sprites/Enemy/enemyDeath/enemyDeath5.png" id="5_08t8k"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemyAttack.gd" id="5_nymq4"]
+[ext_resource type="Texture2D" uid="uid://ckvoraeciovxs" path="res://Sprites/Enemy/EnemyRun5.png" id="5_yq4y5"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemyAnimations.gd" id="12_uaqd2"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemyControl.gd" id="13_7d0sl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8hpy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ct0dh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bkbfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s2ror")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qo2v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_08t8k")
+}],
+"loop": false,
+"name": &"death",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c01xs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ghn5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s51fj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_godfl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yq4y5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5yrl"]
+size = Vector2(72, 54)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_di6f2"]
+radius = 37.0
+height = 84.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_h8hpy")
+animation = &"death"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_o5yrl")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 40
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_di6f2")
+
+[node name="EnemyMove" type="Node" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_njnmm")
+enemy = NodePath("..")
+
+[node name="EnemyState" type="Node" parent="."]
+script = ExtResource("3_4n1vb")
+
+[node name="EnemyDamage" type="Node" parent="." node_paths=PackedStringArray("enemy", "collision", "state")]
+script = ExtResource("4_oie1h")
+enemy = NodePath("..")
+collision = NodePath("../Area2D")
+state = NodePath("../EnemyState")
+
+[node name="EnemyAttack" type="Node" parent="."]
+script = ExtResource("5_nymq4")
+
+[node name="EnemyAnimations" type="Node" parent="." node_paths=PackedStringArray("state", "animation", "enemy")]
+script = ExtResource("12_uaqd2")
+state = NodePath("../EnemyState")
+animation = NodePath("../AnimatedSprite2D")
+enemy = NodePath("..")
+
+[node name="EnemyControl" type="Node" parent="." node_paths=PackedStringArray("enemy", "state", "move")]
+script = ExtResource("13_7d0sl")
+enemy = NodePath("..")
+state = NodePath("../EnemyState")
+move = NodePath("../EnemyMove")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="EnemyAnimations" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="EnemyDamage" method="_on_area_2d_body_entered"]
