@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://bottbukdk36i3"]
+
+[ext_resource type="Texture2D" uid="uid://lphsydl4la3t" path="res://Sprites/Attacks/FireGauntlet/FireWave1.png" id="1_hfjd6"]
+[ext_resource type="Texture2D" uid="uid://du8uwmuip3eoi" path="res://Sprites/Attacks/FireGauntlet/FireWave2.png" id="2_dlpsx"]
+[ext_resource type="Texture2D" uid="uid://btksgur80fpkp" path="res://Sprites/Attacks/FireGauntlet/FireWave3.png" id="3_o7a08"]
+[ext_resource type="Texture2D" uid="uid://ckiv8erj4orf" path="res://Sprites/Attacks/FireGauntlet/FireWave4.png" id="4_arb34"]
+[ext_resource type="Texture2D" uid="uid://c4phgb5vy420p" path="res://Sprites/Attacks/FireGauntlet/FireWave5.png" id="5_xa5ft"]
+[ext_resource type="Script" path="res://Scripts/Common/Attack.gd" id="6_4epyd"]
+[ext_resource type="Texture2D" uid="uid://dha2vtxuxwrgl" path="res://Sprites/Attacks/FireGauntlet/FireWave6.png" id="6_77as6"]
+[ext_resource type="Texture2D" uid="uid://cinnyf00ap1dh" path="res://Sprites/Attacks/FireGauntlet/FireWave7.png" id="7_36jpc"]
+[ext_resource type="Texture2D" uid="uid://bjbwkutrt0hfn" path="res://Sprites/Attacks/FireGauntlet/FireWave8.png" id="8_gvbix"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ohwc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hfjd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dlpsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o7a08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_arb34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xa5ft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_77as6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_36jpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gvbix")
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]
+
+[node name="Node2D" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 6)
+sprite_frames = SubResource("SpriteFrames_2ohwc")
+
+[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box")]
+script = ExtResource("6_4epyd")
+attack_node = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
+hit_box = NodePath("../CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-713, 3)
+polygon = PackedVector2Array(-38, -44, 444, -47, 632, -2, 463, 54, -35, 54)
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="Attack" method="_on_animated_sprite_2d_frame_changed"]

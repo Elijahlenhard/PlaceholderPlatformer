@@ -19,12 +19,24 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
 	sprite.flip_h = state.direction.x < 0
-	
+	if(state.changing_form):
+		return
 	if(player.velocity.x!=0):
-		sprite.animation = "walk"
+		sprite.animation = state.form + "_run"
 	else:
-		sprite.animation = "idle"
-
+		sprite.animation = state.form + "_idle"
+	
 
 	
+
+
+func _on_player_misc_input_form_changed(old_form, new_form):
+	state.changing_form = true
+	sprite.animation = "transform_" +old_form + "_" + new_form
+
+
+func _on_animated_sprite_2d_animation_looped():
+	if("transform" in sprite.animation):
+		state.changing_form = false
