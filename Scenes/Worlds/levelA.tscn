@@ -75,7 +75,7 @@ target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_twnvs")]
 z_index = 2
-position = Vector2(214, 79)
+position = Vector2(227, 42)
 
 [node name="Enemy" parent="." instance=ExtResource("6_wjy4y")]
 position = Vector2(506, -213)

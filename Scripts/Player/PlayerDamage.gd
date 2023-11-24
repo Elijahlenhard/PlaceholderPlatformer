@@ -31,7 +31,7 @@ func _on_hitbox_area_entered(area):
 	var vector_to_attack = area.global_position - player.global_position
 	player.velocity.x+= sign(vector_to_attack.x)*-500
 	player.velocity.y-= 500
-	state.i_frames = 1
+	state.i_frames = .75
 	
 	var new_health = state.health- enemyState.contact_damage
 	
