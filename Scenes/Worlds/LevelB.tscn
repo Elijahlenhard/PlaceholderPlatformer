@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://cxlndfcoygdt0"]
+
+[ext_resource type="PackedScene" uid="uid://sam2crkn2i14" path="res://Scenes/Misc/GameplayUi.tscn" id="1_f8o6e"]
+[ext_resource type="AudioStream" uid="uid://cl70nnui4rhhf" path="res://Sounds/Music/Wasteland or Snowy area.mp3" id="2_myfb0"]
+[ext_resource type="Texture2D" uid="uid://bqkc5ot0mdo1p" path="res://Sprites/Tiles/IceLand/IceBricksSheet.png" id="3_soqav"]
+[ext_resource type="Texture2D" uid="uid://cm8qtqvxaebhc" path="res://Sprites/Tiles/IceLand/IceSpikes.png" id="4_imp81"]
+[ext_resource type="Script" path="res://Scripts/Misc/Camera2D.gd" id="5_3iaiu"]
+[ext_resource type="PackedScene" uid="uid://cyb4hippeoqe8" path="res://Scenes/Player/Player.tscn" id="6_qt5tp"]
+[ext_resource type="PackedScene" uid="uid://c8ir2pi3xawgl" path="res://Scenes/Enemy/Enemy.tscn" id="7_b1ry3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u1nom"]
+texture = ExtResource("3_soqav")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+4:0/next_alternative_id = 2
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+4:0/1 = 1
+4:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/1/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_341jt"]
+texture = ExtResource("4_imp81")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_d4sbi"]
+tile_size = Vector2i(48, 48)
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
+sources/0 = SubResource("TileSetAtlasSource_u1nom")
+sources/1 = SubResource("TileSetAtlasSource_341jt")
+
+[node name="World" type="Node2D"]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_f8o6e")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-41, 37)
+stream = ExtResource("2_myfb0")
+max_distance = 171571.0
+attenuation = 0.901249
+panning_strength = 0.0
+bus = &"Music"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_d4sbi")
+cell_quadrant_size = 64
+format = 2
+layer_0/tile_data = PackedInt32Array(393208, 0, 0, 393209, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, -458730, 0, 0, -458731, 0, 0, -458732, 0, 0, -458733, 0, 0, -458734, 0, 0, -458735, 0, 0, -458736, 0, 0, -458737, 0, 0, -458738, 0, 0, -458739, 0, 0, -458740, 0, 0, -458741, 0, 0, -458742, 0, 0, -458743, 0, 0, -458744, 0, 0, -458745, 0, 0, -458746, 0, 0, -458747, 0, 0, -458748, 0, 0, -458749, 0, 0, -458750, 0, 0, -458751, 0, 0, -458752, 0, 0, -393217, 0, 0, -393218, 0, 0, -393219, 0, 0, -393220, 0, 0, -393221, 0, 0, -393222, 0, 0, -393223, 0, 0, -393224, 0, 0, -393194, 0, 0, -327658, 0, 0, -262122, 0, 0, -196586, 0, 0, 262166, 0, 0, 196630, 0, 0, 131094, 0, 0, 131095, 0, 0, 131096, 0, 0, 131097, 0, 0, 131098, 0, 0, 131099, 0, 0, 131100, 0, 0, 131101, 0, 0, 131102, 0, 0, 131103, 0, 0, -196585, 0, 0, -196584, 0, 0, -196583, 0, 0, -196582, 0, 0, -196581, 0, 0, -196580, 0, 0, -196579, 0, 0, -196578, 0, 0, -196577, 0, 0, -458760, 65536, 0, -458759, 65536, 0, -458758, 65536, 0, -458757, 65536, 0, -458756, 65536, 0, -458755, 65536, 0, -458754, 65536, 0, -458753, 65536, 0, -524288, 65536, 0, -524287, 65536, 0, -524286, 65536, 0, -524285, 65536, 0, -524284, 65536, 0, -524283, 65536, 0, -524282, 65536, 0, -524281, 65536, 0, -524280, 65536, 0, -524279, 65536, 0, -524278, 65536, 0, -524277, 65536, 0, -524276, 65536, 0, -524275, 65536, 0, -524274, 65536, 0, -524273, 65536, 0, -524272, 65536, 0, -524268, 65536, 0, -524269, 65536, 0, -524270, 65536, 0, -524267, 65536, 0, -524266, 65536, 0, -524271, 65536, 0, -458729, 65536, 0, -393193, 65536, 0, -327657, 65536, 0, -262121, 65536, 0, -262120, 65536, 0, -262119, 65536, 0, -262118, 65536, 0, -262117, 65536, 0, -327653, 131072, 0, -327652, 131072, 0, -327651, 131072, 0, -327650, 131072, 0, -524265, 65536, 0, -262116, 65536, 0, -262115, 65536, 0, -262114, 65536, 0, -262113, 65536, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(529, 49)
+script = ExtResource("5_3iaiu")
+target = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("6_qt5tp")]
+z_index = 2
+position = Vector2(227, 42)
+
+[node name="Enemy" parent="." instance=ExtResource("7_b1ry3")]
+position = Vector2(506, -213)
+
+[node name="Enemy 2" parent="." instance=ExtResource("7_b1ry3")]
+position = Vector2(757, 127)
+
+[node name="Enemy 3" parent="." instance=ExtResource("7_b1ry3")]
+position = Vector2(483, 80)
+
+[node name="Enemy 4" parent="." instance=ExtResource("7_b1ry3")]
+position = Vector2(343, 158)
+
+[node name="Enemy 5" parent="." instance=ExtResource("7_b1ry3")]
+position = Vector2(796, -68)
+
+[node name="Enemy 6" parent="." instance=ExtResource("7_b1ry3")]
+position = Vector2(606, 32)
+
+[connection signal="health_changed" from="Player" to="CanvasLayer" method="_on_player_health_changed"]

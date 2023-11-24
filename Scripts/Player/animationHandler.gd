@@ -29,9 +29,6 @@ func _process(delta):
 		sprite.animation = state.form + "_idle"
 	
 
-	
-
-
 func _on_player_misc_input_form_changed(old_form, new_form):
 	state.changing_form = true
 	sprite.animation = "transform_" +old_form + "_" + new_form

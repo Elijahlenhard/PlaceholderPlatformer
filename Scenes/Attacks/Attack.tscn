@@ -97,7 +97,7 @@ z_index = 1
 texture_filter = 1
 position = Vector2(1.36424e-12, 10)
 sprite_frames = SubResource("SpriteFrames_2ohwc")
-animation = &"attack_3"
+animation = &"attack_1"
 
 [node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box")]
 script = ExtResource("6_anjcp")
