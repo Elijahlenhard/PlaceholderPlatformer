@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cfre0m4ws4hf5"]
 
-[ext_resource type="PackedScene" uid="uid://cyb4hippeoqe8" path="res://character_body_2d.tscn" id="1_twnvs"]
+[ext_resource type="PackedScene" uid="uid://bg4yl8hc3tkmm" path="res://character_body_2d.tscn" id="1_twnvs"]
 [ext_resource type="AudioStream" uid="uid://cl70nnui4rhhf" path="res://Sounds/Music/Wasteland or Snowy area.mp3" id="2_kb7cl"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="3_52qx8"]
 [ext_resource type="Texture2D" uid="uid://bbosh043sbop2" path="res://Sprites/Tiles/Basic/BasicTile.png" id="4_rf7n8"]
