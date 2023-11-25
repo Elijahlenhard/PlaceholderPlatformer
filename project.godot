@@ -85,3 +85,4 @@ level_b={
 2d_physics/layer_4="EnemyAttacks"
 2d_physics/layer_5="PlayerHitbox"
 2d_physics/layer_6="EnemyHitBox"
+2d_physics/layer_7="SceneTransition"

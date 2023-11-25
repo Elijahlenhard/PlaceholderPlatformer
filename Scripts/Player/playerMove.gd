@@ -79,6 +79,7 @@ func _physics_process(delta):
 		player.velocity.y=0
 	player.move_and_slide()
 
+
 	
 func apply_gravity(delta):
 	"""
@@ -100,10 +101,10 @@ func jump(delta):
 		#player.velocity.y -= linear*((pow(state.max_jump_time, .1)-pow(state.time_jumping,.1))/state.max_jump_time)*delta
 		player.velocity.y -= linear/(delta+state.time_jumping)
 		state.time_jumping += delta
-	"""
-	player.velocity.y -= ((2*jump_height)/jump_peak_time)*delta
-	print_debug(player.velocity)
-	"""
+	
+	#player.velocity.y -= ((2*jump_height)/jump_peak_time)*delta
+	#print_debug(player.velocity)
+	
 		
 		
 func wall_jump(delta):

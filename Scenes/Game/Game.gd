@@ -16,3 +16,4 @@ func _on_level_a_change_level(level):
 	var level_instance = new_level.instantiate()
 	level_instance.set_name(level)
 	add_child(level_instance)
+	level_instance.change_level.connect(_on_level_a_change_level)
