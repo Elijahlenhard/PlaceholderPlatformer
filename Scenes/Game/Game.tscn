@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=6 format=3 uid="uid://c4jq5aq01sodd"]
 
 [ext_resource type="Script" path="res://Scripts/World/WorldState.gd" id="1_5icfj"]
@@ -12,6 +13,7 @@ script = ExtResource("1_5icfj")
 [node name="LevelA" parent="." instance=ExtResource("1_8mo7j")]
 script = ExtResource("3_4m2q4")
 
+
 [node name="WorldState" type="Node" parent="."]
 script = ExtResource("1_5icfj")
 
@@ -25,3 +27,4 @@ world_state = NodePath("../WorldState")
 [connection signal="exit_pressed" from="EscapeMenu" to="SaveManager" method="_on_escape_menu_exit_pressed"]
 [connection signal="load_pressed" from="EscapeMenu" to="SaveManager" method="_on_escape_menu_load_pressed"]
 [connection signal="save_pressed" from="EscapeMenu" to="SaveManager" method="_on_escape_menu_save_pressed"]
+
