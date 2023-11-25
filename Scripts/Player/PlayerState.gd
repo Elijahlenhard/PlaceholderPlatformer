@@ -21,10 +21,11 @@ var changing_form = false
 var form = "fire"
 
 var attack_cd = 0
-var attack_speed = .45
+var fire_attack_speed = .25
+var fire_combo_cd = .7
 var health = 3
 var fire_wave_cd = 0
-var fire_wave_max_cd = 7.5
+var fire_wave_max_cd = 1
 
 var attack_variation = 1
 var time_since_basic = 2

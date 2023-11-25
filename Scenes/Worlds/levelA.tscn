@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfre0m4ws4hf5"]
+[gd_scene load_steps=14 format=3 uid="uid://cfre0m4ws4hf5"]
 
 [ext_resource type="PackedScene" uid="uid://sam2crkn2i14" path="res://Scenes/Misc/GameplayUi.tscn" id="1_fwfyf"]
 [ext_resource type="PackedScene" uid="uid://cyb4hippeoqe8" path="res://Scenes/Player/Player.tscn" id="1_twnvs"]
+[ext_resource type="Script" path="res://Scenes/Worlds/levelA.gd" id="1_vsti0"]
 [ext_resource type="AudioStream" uid="uid://cl70nnui4rhhf" path="res://Sounds/Music/Wasteland or Snowy area.mp3" id="2_kb7cl"]
 [ext_resource type="Script" path="res://Scripts/Misc/Camera2D.gd" id="3_52qx8"]
 [ext_resource type="Texture2D" uid="uid://cm8qtqvxaebhc" path="res://Sprites/Tiles/IceLand/IceSpikes.png" id="3_prn0y"]
@@ -50,7 +51,25 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_u1nom")
 sources/1 = SubResource("TileSetAtlasSource_341jt")
 
+[sub_resource type="GDScript" id="GDScript_l5hkx"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xe1b"]
+size = Vector2(105.5, 192)
+
 [node name="World" type="Node2D"]
+script = ExtResource("1_vsti0")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_fwfyf")]
 
@@ -75,7 +94,7 @@ target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_twnvs")]
 z_index = 2
-position = Vector2(227, 42)
+position = Vector2(-1511, -7)
 
 [node name="Enemy" parent="." instance=ExtResource("6_wjy4y")]
 position = Vector2(506, -213)
@@ -95,4 +114,14 @@ position = Vector2(796, -68)
 [node name="Enemy 6" parent="." instance=ExtResource("6_wjy4y")]
 position = Vector2(606, 32)
 
+[node name="LevelBTranisition" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = SubResource("GDScript_l5hkx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBTranisition"]
+position = Vector2(-1628, 0)
+shape = SubResource("RectangleShape2D_2xe1b")
+
 [connection signal="health_changed" from="Player" to="CanvasLayer" method="_on_player_health_changed"]
+[connection signal="area_entered" from="LevelBTranisition" to="." method="_on_level_b_tranisition_area_entered"]

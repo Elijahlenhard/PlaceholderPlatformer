@@ -2,8 +2,7 @@ extends Node2D
 
 signal change_level(level)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if(Input.is_action_just_pressed("level_b")):
-		change_level.emit("LevelB")
-		queue_free()
+
+func _on_level_b_tranisition_area_entered(area):
+	change_level.emit("LevelB")
+	queue_free()
