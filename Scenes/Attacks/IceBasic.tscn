@@ -1,10 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://byac3c1t525ey"]
+[gd_scene load_steps=19 format=3 uid="uid://byac3c1t525ey"]
 
 [ext_resource type="Texture2D" uid="uid://ck4dpawj24k8u" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasic1.png" id="1_7rk5m"]
 [ext_resource type="Texture2D" uid="uid://l4e3ku6v8jfq" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasic2.png" id="2_aq6se"]
 [ext_resource type="Texture2D" uid="uid://bpeshe161jwui" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasic3.png" id="3_h4vnl"]
 [ext_resource type="Texture2D" uid="uid://jh5jea1dvbe7" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasic4.png" id="4_57lb5"]
 [ext_resource type="Texture2D" uid="uid://mcfa2b5ca7gw" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasic5.png" id="5_mwm3f"]
+[ext_resource type="Texture2D" uid="uid://q2mxmwptpogx" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasicSecond1.png" id="6_twad1"]
+[ext_resource type="Texture2D" uid="uid://x5pdcao63txu" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasicSecond2.png" id="7_5chvl"]
+[ext_resource type="Texture2D" uid="uid://dwnrsftnatjh" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasicSecond3.png" id="8_61wns"]
+[ext_resource type="Texture2D" uid="uid://cb7a2rkfhd77m" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasicSecond4.png" id="9_x8ikq"]
+[ext_resource type="Texture2D" uid="uid://2acudeql03hm" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasicSecond5.png" id="10_5ovh2"]
+[ext_resource type="Texture2D" uid="uid://eet7wr1clngu" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasicSecond6.png" id="11_nhit1"]
+[ext_resource type="Texture2D" uid="uid://cnitoy3lr86u0" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasicSecond7.png" id="12_suv2u"]
+[ext_resource type="Texture2D" uid="uid://d1ts6cvci74gy" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasicSecond8.png" id="13_u3ouo"]
 [ext_resource type="Script" path="res://Scripts/Common/Attack.gd" id="18_w1fqm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2ohwc"]
@@ -31,44 +39,69 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_7rk5m")
+"texture": ExtResource("6_twad1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_aq6se")
+"texture": ExtResource("7_5chvl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_h4vnl")
+"texture": ExtResource("8_61wns")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_57lb5")
+"texture": ExtResource("9_x8ikq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_mwm3f")
+"texture": ExtResource("10_5ovh2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_nhit1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_suv2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_u3ouo")
 }],
 "loop": false,
 "name": &"attack_2",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_7rk5m")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_aq6se")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_h4vnl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_57lb5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_mwm3f")
-}],
-"loop": false,
-"name": &"attack_3",
-"speed": 24.0
+"speed": 12.0
 }]
+
+[sub_resource type="Animation" id="Animation_41017"]
+resource_name = "attack_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionPolygon2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-16, -4, -13, 4, -72, 26, -72, 0), PackedVector2Array(-20, -12, 61, -25, -72, 26, -72, 0), PackedVector2Array(-13, 29, -72, 26, -71, -4), PackedVector2Array(55, 55, -72, 26, -71, -4), PackedVector2Array()]
+}
+
+[sub_resource type="Animation" id="Animation_cynev"]
+resource_name = "attack_1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionPolygon2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.1, 0.1001, 0.1002, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-89, 21, 1, 11, -90, -15), PackedVector2Array(-89, 21, 1, 11, -90, -15), PackedVector2Array(-71.0998, 27, -72.1302, 0, -1.03044, 14), PackedVector2Array(-89, 21, 133, 30, 133, -18, -90, -15), PackedVector2Array(-89, 21, 50.9695, 30, 48.9086, -22, -90, -15), PackedVector2Array(-72.1302, -1, 73.1606, -8, 74.1911, 33, -70.0694, 27), PackedVector2Array()]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ja61x"]
+_data = {
+"attack_1": SubResource("Animation_cynev"),
+"attack_2": SubResource("Animation_41017")
+}
 
 [node name="Node2D" type="CharacterBody2D"]
 collision_layer = 4
@@ -77,17 +110,25 @@ collision_mask = 0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 texture_filter = 1
-position = Vector2(1.36424e-12, 10)
+position = Vector2(73, 1)
 sprite_frames = SubResource("SpriteFrames_2ohwc")
 animation = &"attack_1"
 
-[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box")]
+[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box", "animation_player")]
 script = ExtResource("18_w1fqm")
 attack_node = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
 hit_box = NodePath("../CollisionPolygon2D")
+animation_player = NodePath("../AnimationPlayer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-63, -41, 76, -20, 74, 46, 16, 55, -70, 52, -75, -18)
+position = Vector2(70, -10)
+scale = Vector2(0.970467, 1)
+polygon = PackedVector2Array(55, 55, -72, 26, -71, -4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ja61x")
+}
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="Attack" method="_on_animated_sprite_2d_frame_changed"]

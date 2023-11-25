@@ -30,4 +30,7 @@ func _process(delta):
 		state.time_since_basic+=delta
 	else:
 		state.attack_variation=1
+		
+	if(state.time_since_floor < state.coyote_time):
+		state.time_since_floor += delta
 	

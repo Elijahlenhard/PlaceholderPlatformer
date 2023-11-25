@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://kd76wlw731gg"]
+
+[ext_resource type="Texture2D" uid="uid://duas0yit1arcb" path="res://Sprites/dot.png" id="1_10eqf"]
+
+[node name="theDot" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+z_as_relative = false
+texture = ExtResource("1_10eqf")

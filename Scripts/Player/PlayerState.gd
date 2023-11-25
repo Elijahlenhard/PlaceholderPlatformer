@@ -13,7 +13,11 @@ var is_dashing = false
 var dash_cd = 1.5
 var remaining_dash_cd = 0
 
+var time_since_floor =.07
+var coyote_time = .07
+
 var can_wall_jump = false
+var is_wall_jumping = false
 var time_since_wall = 0
 var i_frames = 0
 
@@ -25,7 +29,8 @@ var fire_attack_speed = .25
 var fire_combo_cd = .7
 var health = 3
 var fire_wave_cd = 0
-var fire_wave_max_cd = 1
+var fire_wave_max_cd = 7
+var attack_held_for = 0
 
 var attack_variation = 1
 var time_since_basic = 2
