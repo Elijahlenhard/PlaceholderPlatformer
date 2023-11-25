@@ -1,11 +1,34 @@
+
 [gd_scene load_steps=3 format=3 uid="uid://c4jq5aq01sodd"]
 
+
+[gd_scene load_steps=6 format=3 uid="uid://c4jq5aq01sodd"]
+
+[ext_resource type="Script" path="res://Scripts/World/WorldState.gd" id="1_5icfj"]
 [ext_resource type="PackedScene" uid="uid://cfre0m4ws4hf5" path="res://Scenes/Worlds/levelA.tscn" id="1_8mo7j"]
 [ext_resource type="Script" path="res://Scenes/Game/Game.gd" id="1_681w2"]
 
+[ext_resource type="Script" path="res://Scenes/Worlds/levelA.gd" id="3_4m2q4"]
+[ext_resource type="PackedScene" uid="uid://boixgvwwis80y" path="res://Scenes/Misc/EscapeMenu.tscn" id="4_6st0p"]
+[ext_resource type="Script" path="res://Scripts/Saves/SaveManager.gd" id="5_d2csd"]
+
 [node name="Game" type="Node2D"]
-script = ExtResource("1_681w2")
+script = ExtResource("1_5icfj")
 
 [node name="LevelA" parent="." instance=ExtResource("1_8mo7j")]
 
+
+[node name="WorldState" type="Node" parent="."]
+script = ExtResource("1_5icfj")
+
+[node name="EscapeMenu" parent="." instance=ExtResource("4_6st0p")]
+
+[node name="SaveManager" type="Node" parent="." node_paths=PackedStringArray("world_state")]
+script = ExtResource("5_d2csd")
+world_state = NodePath("../WorldState")
+
 [connection signal="change_level" from="LevelA" to="." method="_on_level_a_change_level"]
+[connection signal="exit_pressed" from="EscapeMenu" to="SaveManager" method="_on_escape_menu_exit_pressed"]
+[connection signal="load_pressed" from="EscapeMenu" to="SaveManager" method="_on_escape_menu_load_pressed"]
+[connection signal="save_pressed" from="EscapeMenu" to="SaveManager" method="_on_escape_menu_save_pressed"]
+
