@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdf2j1x1x61lf"]
 
-[ext_resource type="PackedScene" uid="uid://cfre0m4ws4hf5" path="res://Scenes/Worlds/levelA.tscn" id="1_sw2mt"]
+[ext_resource type="PackedScene" uid="uid://cfre0m4ws4hf5" path="res://Scenes/Worlds/LevelA.tscn" id="1_sw2mt"]
 
 [node name="SubViewport" type="SubViewport"]
 

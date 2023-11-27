@@ -12,8 +12,9 @@ signal hit
 @export var jump_height = 960000
 @export var jump_peak_time = 30
 
-var slower_gravity_zone = 200.0
+var slower_gravity_zone = 100.0
 
+var time =0
 
 var lastPos = Vector2(0,0)
 var g = 0
@@ -25,7 +26,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	print_debug(player.velocity)
+	time+= delta
+	var string_format = "(%f,%f)"
+	#print_debug(string_format % [time, -player.position.y])
 	lastPos= player.position
 	apply_gravity(delta)
 	
@@ -33,25 +36,27 @@ func _physics_process(delta):
 		state.time_since_floor=0
 	
 	#Checks for directional input and calls appropriate functions
-	if Input.is_action_pressed("move_right"):
-		run_right(delta)
+	if (Input.is_action_pressed("move_right")&&!state.is_dashing&&state.time_since_wall_jump>(state.wall_jump_time/2)):
+		#run(delta, 1)
 		state.direction.x =1 #Dash direction updated for direction character is facing
-	elif Input.is_action_pressed("move_left"):
-		run_left(delta)
+		player.velocity.x = top_speed
+	elif (Input.is_action_pressed("move_left")&&!state.is_dashing&&state.time_since_wall_jump>(state.wall_jump_time/2)):
+		#run(delta, -1)
 		state.direction.x =-1#Dash direction updated for direction character is facing
-	else:
-		decelerate(delta, 1)#if no directional input, decelerate
+		player.velocity.x = -top_speed
+	elif(!state.is_dashing && !state.is_wall_jumping):
+		#run(delta, 0)#if no directional input, decelerate
+		player.velocity.x = 0
 		
 	#Primes a jump the frame the jump key is pressed
 	if Input.is_action_just_pressed("jump"):
-		state.jump_primed =.1#if the player touches the ground at anypoint in the next 3 frames, execute a jump
+		state.jump_primed =.1
 		
 	#sets jump_held to false if the jump key is released
 	if (!Input.is_action_pressed("jump")):
 		state.jump_held = false
 	if(player.velocity.y>0):
 		state.jump_held = false
-		state.is_wall_jumping = false
 	
 	
 		
@@ -62,6 +67,7 @@ func _physics_process(delta):
 		state.jump_primed =0
 		state.time_since_floor = state.coyote_time
 		jump(delta)
+		state.is_jumping = true
 	else:
 		state.time_jumping = 0
 		
@@ -75,15 +81,10 @@ func _physics_process(delta):
 	#if the dash key is hit and dash is off cool down call dash function
 	if(Input.is_action_just_pressed("dash") && state.remaining_dash_cd<=0):
 		state.is_dashing = true #disables deceleration and sets y velocity to 0 for a set time
-		dash(delta)
 		state.remaining_dash_cd = state.dash_cd
 		
 	if(state.is_dashing):
-		state.dash_time += delta
-		if (state.dash_time > .1):
-			state.is_dashing = false
-			state.dash_time =0
-		player.velocity.y =0
+		dash(delta)
 			
 	if(state.remaining_dash_cd >0):
 		state.remaining_dash_cd -= delta
@@ -93,7 +94,6 @@ func _physics_process(delta):
 		player.velocity.y=0
 	player.move_and_slide()
 
-
 	
 func apply_gravity(delta):
 	
@@ -101,9 +101,9 @@ func apply_gravity(delta):
 	if(state.jump_held):
 		mod = 1.3
 	elif(abs(player.velocity.y) <= slower_gravity_zone):
-		lerp(.7, 3.0, abs(player.velocity.y)/slower_gravity_zone)
-	elif(!state.jump_held && player.velocity.y<0 && !state.is_wall_jumping):
-		mod = 3
+		mod = lerp(.7, 1.5, abs(player.velocity.y)/slower_gravity_zone)
+	elif(!state.jump_held && player.velocity.y<0 && state.time_since_wall_jump>state.wall_jump_time):
+		mod = 4
 	if (!player.is_on_floor()):
 		player.velocity.y += g*delta*mod
 		player.velocity.y = clamp(player.velocity.y, 2*-terminal_velocity, terminal_velocity)
@@ -122,31 +122,54 @@ func jump(delta):
 	#	player.velocity.y -= linear/(delta+state.time_jumping)
 	#	state.time_jumping += delta
 	player.velocity.y -= ((2*jump_height)/jump_peak_time)*delta
-	print_debug(player.velocity)
 	
 		
 		
 func wall_jump(delta):
 	state.is_wall_jumping = true
+	state.time_since_wall_jump = 0
 	player.velocity.y = 0
-	var speed = Vector2(500, -1050)
+	var speed = Vector2(400, -750)
 	player.velocity.y+=speed.y
 	
 	player.velocity.x = speed.x*player.get_wall_normal().x
 
-func run_right(delta):
-	var multiplier = 1.1
-	var linear = 20
+func run(delta, direction):
+	"""
+	var multiplier = 1.1*direction
+	var linear = 20*direction
 	if(player.velocity.x<0||player.velocity.x>(top_speed+25)):
-		decelerate(delta, 2)
+		decelerate(delta, 1)
 	elif(player.velocity.x<top_speed):
 		player.velocity.x = player.velocity.x*multiplier + linear
-		
-func run_left(delta):
-	var multiplier = 1.1
+	"""
+	
+	var rate = 5
+	var power = .5
+	
+	if(direction == 0 || sign(direction)!=sign(player.velocity.x)):
+		rate = 5
+		power = .6
+	
+	var wall_jump_movement_slow_time = .2
+	
+	if(state.time_since_wall_jump<wall_jump_movement_slow_time):
+		rate = lerp(0, 5, state.time_since_wall_jump/wall_jump_movement_slow_time)
+	
+	var target_speed = top_speed*direction
+	
+	var speed_diff = target_speed - player.velocity.x
+	var delta_v = pow(abs(speed_diff)*rate, power) * sign(speed_diff)
+
+	player.velocity.x += delta_v
+	
+	if(direction == 0 && abs(player.velocity.x) < 5):
+		player.velocity.x = 0
+func run_left(delta, direction):
+	var multiplier = 1.1*direction
 	var linear = -20
 	if(player.velocity.x>0 ||player.velocity.x<-(top_speed+25)):
-		decelerate(delta, 2)
+		decelerate(delta, 1)
 	elif(player.velocity.x>-top_speed):
 		player.velocity.x = player.velocity.x*multiplier + linear
 
@@ -166,5 +189,6 @@ func decelerate(delta, rate):
 
 func dash(delta):
 	player.velocity.x = 1500*state.direction.x
+	player.velocity.y = 0
 		
 	

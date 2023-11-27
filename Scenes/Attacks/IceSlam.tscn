@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1kl80wnpkiol"]
+
+[ext_resource type="Texture2D" uid="uid://77g8abd7fuyi" path="res://Sprites/Attacks/IceAxe/IceSlam1.png" id="1_85obo"]
+[ext_resource type="Texture2D" uid="uid://ccfhbm6gxmstw" path="res://Sprites/Attacks/IceAxe/IceSlam2.png" id="2_a2sbv"]
+[ext_resource type="Texture2D" uid="uid://dlhwhk8ikxnre" path="res://Sprites/Attacks/IceAxe/IceSlam3.png" id="3_l4wsr"]
+[ext_resource type="Texture2D" uid="uid://n7hm1nmtfdp0" path="res://Sprites/Attacks/IceAxe/IceSlam4.png" id="4_vux2y"]
+[ext_resource type="Texture2D" uid="uid://dhwwd2e3b7okv" path="res://Sprites/Attacks/IceAxe/IceSlam5.png" id="5_cjwuk"]
+[ext_resource type="Script" path="res://Scripts/Common/Attack.gd" id="9_jlcdw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ohwc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_85obo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a2sbv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l4wsr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vux2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cjwuk")
+}],
+"loop": false,
+"name": &"attack_1",
+"speed": 12.0
+}]
+
+[node name="Node2D" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(145, -60)
+sprite_frames = SubResource("SpriteFrames_2ohwc")
+animation = &"attack_1"
+frame = 1
+
+[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box", "animation_player")]
+script = ExtResource("9_jlcdw")
+attack_node = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
+hit_box = NodePath("../CollisionPolygon2D")
+animation_player = NodePath("")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(120, -19)
+scale = Vector2(0.970467, 1)
+polygon = PackedVector2Array(-106.134, -120, -31.9434, -13, -56.6738, 102, 43.2781, 102, 48.4303, -34, -44.3086, -144)
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="Attack" method="_on_animated_sprite_2d_frame_changed"]

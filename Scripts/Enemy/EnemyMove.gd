@@ -41,7 +41,7 @@ func run_left(delta):
 		enemy.velocity.x = enemy.velocity.x*multiplier + linear
 func decelerate(delta, rate):
 	var deceleration = .99
-	var linear = 10
+	var linear = 5
 	if(abs(enemy.velocity.x) < linear):
 		enemy.velocity.x = 0
 	elif(enemy.velocity.x > 0):

@@ -10,19 +10,28 @@ var direction = 1
 var damage = 0
 var active_for
 var knock_back
-
+var effective_frame = 2
+var frame_played = false
 var flipped
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.play()
+	hit_box.disabled=true
 	sprite.animation_finished.connect(destroy_self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	print_debug(hit_box.disabled)
+	if(sprite.frame==effective_frame):
+		hit_box.disabled=false
+		frame_played = true
+	else:
+		hit_box.disabled=true
 
-func init(root_position, source_direction, dmg, active_frames, offset, attack_variation, z):
+func init(root_position, source_direction, dmg, active_frame, offset, attack_variation, z):
+	
+	effective_frame = active_frame
 	
 	if(animation_player!=null):
 		animation_player.play("attack_" + str(attack_variation))
@@ -33,7 +42,6 @@ func init(root_position, source_direction, dmg, active_frames, offset, attack_va
 	sprite.z_index = z
 	
 	damage = dmg
-	active_for = active_frames
 	var flip = source_direction.x!=1
 	get_parent().position.x+=sign(source_direction.x)*offset
 	direction = source_direction.x
@@ -47,9 +55,3 @@ func init(root_position, source_direction, dmg, active_frames, offset, attack_va
 
 func destroy_self():
 	attack_node.queue_free()
-
-
-func _on_animated_sprite_2d_frame_changed():
-	return
-	if(sprite.frame == active_for-1):
-		hit_box.queue_free()
