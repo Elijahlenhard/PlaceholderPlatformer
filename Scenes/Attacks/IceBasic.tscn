@@ -1,29 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://byac3c1t525ey"]
+[gd_scene load_steps=11 format=3 uid="uid://byac3c1t525ey"]
 
-[ext_resource type="Texture2D" uid="uid://ck4dpawj24k8u" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasic1.png" id="1_7rk5m"]
-[ext_resource type="Texture2D" uid="uid://l4e3ku6v8jfq" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasic2.png" id="2_aq6se"]
-[ext_resource type="Texture2D" uid="uid://bpeshe161jwui" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasic3.png" id="3_h4vnl"]
-[ext_resource type="Texture2D" uid="uid://jh5jea1dvbe7" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasic4.png" id="4_57lb5"]
-[ext_resource type="Texture2D" uid="uid://mcfa2b5ca7gw" path="res://Sprites/Attacks/IceSpear/BasicAttack/IceBasic5.png" id="5_mwm3f"]
+[ext_resource type="Texture2D" uid="uid://degmmw3u3qwes" path="res://Sprites/Attacks/IceAxe/IceBasicOne1.png" id="1_0b2td"]
+[ext_resource type="Texture2D" uid="uid://bvwc1ctb0wpwf" path="res://Sprites/Attacks/IceAxe/IceBasicOne2.png" id="2_lwbjf"]
+[ext_resource type="Texture2D" uid="uid://tttrmfypsub3" path="res://Sprites/Attacks/IceAxe/IceBasicOne3.png" id="3_84m0n"]
+[ext_resource type="Texture2D" uid="uid://b5ageioubp2ey" path="res://Sprites/Attacks/IceAxe/IceBasicOne4.png" id="4_5ojnp"]
+[ext_resource type="Texture2D" uid="uid://d2147vy3sicek" path="res://Sprites/Attacks/IceAxe/IceBasicTwo1.png" id="5_ekh6s"]
+[ext_resource type="Texture2D" uid="uid://buusyxjgoast0" path="res://Sprites/Attacks/IceAxe/IceBasicTwo2.png" id="6_xfpf5"]
+[ext_resource type="Texture2D" uid="uid://ohs2vadsdt2w" path="res://Sprites/Attacks/IceAxe/IceBasicTwo3.png" id="7_pk3hj"]
+[ext_resource type="Texture2D" uid="uid://bic4susrwaa0j" path="res://Sprites/Attacks/IceAxe/IceBasicTwo4.png" id="8_xsltf"]
 [ext_resource type="Script" path="res://Scripts/Common/Attack.gd" id="18_w1fqm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2ohwc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_7rk5m")
+"texture": ExtResource("1_0b2td")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_aq6se")
+"texture": ExtResource("2_lwbjf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_h4vnl")
+"texture": ExtResource("3_84m0n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_57lb5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_mwm3f")
+"texture": ExtResource("4_5ojnp")
 }],
 "loop": false,
 "name": &"attack_1",
@@ -31,43 +31,37 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_7rk5m")
+"texture": ExtResource("5_ekh6s")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_aq6se")
+"texture": ExtResource("6_xfpf5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_h4vnl")
+"texture": ExtResource("7_pk3hj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_57lb5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_mwm3f")
+"texture": ExtResource("8_xsltf")
 }],
 "loop": false,
 "name": &"attack_2",
-"speed": 4.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_7rk5m")
+"texture": ExtResource("1_0b2td")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_aq6se")
+"texture": ExtResource("2_lwbjf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_h4vnl")
+"texture": ExtResource("3_84m0n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_57lb5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_mwm3f")
+"texture": ExtResource("4_5ojnp")
 }],
 "loop": false,
 "name": &"attack_3",
-"speed": 24.0
+"speed": 12.0
 }]
 
 [node name="Node2D" type="CharacterBody2D"]
@@ -77,17 +71,20 @@ collision_mask = 0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 texture_filter = 1
-position = Vector2(1.36424e-12, 10)
+position = Vector2(73, 34)
 sprite_frames = SubResource("SpriteFrames_2ohwc")
 animation = &"attack_1"
 
-[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box")]
+[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box", "animation_player")]
 script = ExtResource("18_w1fqm")
 attack_node = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
 hit_box = NodePath("../CollisionPolygon2D")
+animation_player = NodePath("")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-63, -41, 76, -20, 74, 46, 16, 55, -70, 52, -75, -18)
+position = Vector2(111, -30)
+scale = Vector2(0.970467, 1)
+polygon = PackedVector2Array(-92.7389, 58, -82.4345, 87, 13.3956, 77, 34.0042, 23, 9.27389, -2, -76.2519, 1)
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="Attack" method="_on_animated_sprite_2d_frame_changed"]

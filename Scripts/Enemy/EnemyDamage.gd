@@ -28,7 +28,7 @@ func _on_area_2d_body_entered(attack):
 
 	
 	
-	enemy.velocity.y = knock_back.x
+	enemy.velocity.y = knock_back.y
 	enemy.velocity.x = sign(direction)*knock_back.x
 
 

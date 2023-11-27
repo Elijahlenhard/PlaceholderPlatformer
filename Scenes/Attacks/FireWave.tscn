@@ -48,17 +48,19 @@ collision_mask = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(748, 3)
+position = Vector2(753, 4)
 sprite_frames = SubResource("SpriteFrames_2ohwc")
+frame = 2
 
-[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box")]
+[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box", "animation_player")]
 script = ExtResource("6_4epyd")
 attack_node = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
 hit_box = NodePath("../CollisionPolygon2D")
+animation_player = NodePath("")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(35, -1)
-polygon = PackedVector2Array(-38, -44, 444, -47, 632, -2, 463, 54, -35, 54)
+position = Vector2(34, -1)
+polygon = PackedVector2Array(-38, -44, 444, -51, 639, 4, 513, 59, 318, 74, -35, 54)
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="Attack" method="_on_animated_sprite_2d_frame_changed"]
