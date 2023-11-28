@@ -21,7 +21,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+
+
+	if(state.is_dashing):
+		sprite.modulate = Color(1,1,1.5,1)
+	else:
+		sprite.modulate = Color(1,1,1,1)
+
 	sprite.flip_h = state.direction.x < 0
 	if(state.changing_form):
 		return

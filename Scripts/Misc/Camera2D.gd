@@ -1,6 +1,7 @@
 extends Camera2D
 
 @export var target: Node
+@export var path: PathFollow2D
 
 var lerp_pos
 # Called when the node enters the scene tree for the first time.
@@ -17,3 +18,4 @@ func _process(delta):
 		return
 	lerp_pos = lerp(lerp_pos, target_position, 2.5*delta)
 	position = snapped(lerp_pos, Vector2(1,1))
+	

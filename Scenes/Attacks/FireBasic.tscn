@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dt0okr53j0s3"]
+[gd_scene load_steps=23 format=3 uid="uid://dt0okr53j0s3"]
 
 [ext_resource type="Texture2D" uid="uid://bp1nglp3chx1p" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack1.png" id="1_ii8b0"]
 [ext_resource type="Texture2D" uid="uid://bsmyj3dr1202v" path="res://Sprites/Attacks/FireGauntlet/FireBasicAttack2.png" id="2_ijv34"]
@@ -119,26 +119,42 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Environment" id="Environment_rura3"]
+background_mode = 3
+background_color = Color(0.87451, 0.443137, 0, 1)
+glow_enabled = true
+glow_intensity = 3.57
+glow_strength = 1.65
+glow_blend_mode = 0
+glow_hdr_threshold = 1.5
+fog_light_energy = 3.8
+fog_sun_scatter = 1.55
+fog_density = 1.0
+
 [node name="Node2D" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1.5, 1.5, 1, 1)
 z_index = 1
 texture_filter = 1
 position = Vector2(72, 23)
 sprite_frames = SubResource("SpriteFrames_2ohwc")
 animation = &"attack_3"
 
-[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box", "animation_player")]
+[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("attack_node", "sprite", "hit_box")]
 script = ExtResource("18_ecgq2")
 attack_node = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
 hit_box = NodePath("../CollisionPolygon2D")
-animation_player = NodePath("")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(75, 18)
 polygon = PackedVector2Array(-63, -41, -56, -13, 71, -28, 74, 32, -11, 32, -63, 8, -75, -18)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rura3")
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="Attack" method="_on_animated_sprite_2d_frame_changed"]

@@ -6,7 +6,7 @@ signal hit
 @export var player: CharacterBody2D
 @export var state: PlayerState
 
-@export var top_speed = 550
+@export var top_speed = 450
 @export var terminal_velocity = 1000
 
 @export var jump_height = 960000
