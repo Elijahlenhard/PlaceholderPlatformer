@@ -35,7 +35,7 @@ func _process(delta):
 		state.attack_held_for=0
 func fire_fire_basic():
 	var attack_variation = 1
-	var offset = -30
+	var offset = -15
 	var z_index = 3
 	state.attack_cd = state.fire_attack_speed
 	print(state.time_since_basic)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cyb4hippeoqe8"]
+[gd_scene load_steps=88 format=3 uid="uid://cyb4hippeoqe8"]
 
 [ext_resource type="Texture2D" uid="uid://dmpje3ot8i6nj" path="res://Sprites/Player/Concept/48pixel idle/48pixelIdle1.png" id="1_4a8td"]
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_xt7yc"]
@@ -354,15 +354,27 @@ size = Vector2(51, 151)
 radius = 23.0
 height = 146.0
 
+[sub_resource type="Environment" id="Environment_flsx1"]
+background_mode = 3
+background_color = Color(0.87451, 0.443137, 0, 1)
+glow_enabled = true
+glow_intensity = 3.57
+glow_strength = 1.65
+glow_blend_mode = 0
+glow_hdr_threshold = 1.5
+fog_light_energy = 3.8
+fog_sun_scatter = 1.55
+fog_density = 1.0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_xt7yc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
 texture_filter = 1
-position = Vector2(2, 10)
+position = Vector2(4, -11)
 sprite_frames = SubResource("SpriteFrames_ysnm3")
-animation = &"jump"
+animation = &"ice_idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 9)
@@ -407,6 +419,9 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(2, 8)
 shape = SubResource("CapsuleShape2D_ikt5i")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_flsx1")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimationHandler" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="AnimationHandler" method="_on_animated_sprite_2d_animation_looped"]
