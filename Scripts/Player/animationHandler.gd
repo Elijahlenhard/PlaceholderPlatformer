@@ -45,7 +45,7 @@ func _process(delta):
 	elif(player.velocity.y<0):
 		jump_frame = lerp(6, 0, player.velocity.y/-1066)
 	if(jump_frame!=-1):
-		sprite.animation = "jump"
+		sprite.animation = state.form+"_jump"
 		sprite.frame = jump_frame
 		var string_format = "(%f,%f)"
 	

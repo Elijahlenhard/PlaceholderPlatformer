@@ -10,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	await(!state.form_change_ui_open)
 	if state.jump_primed>0:#if a jump is primed
 		state.jump_primed -=delta#decrement jump primed var
 		

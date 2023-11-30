@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dc5alctyrays7"
+path="res://.godot/imported/onlymp3.to -  Official Celeste Original Soundtrack 16 Confronting Myself-b_oEDGONSc4-192k-1701362868.mp3-e113b19fc7f0a8ecaedae7d00d911b5e.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/onlymp3.to -  Official Celeste Original Soundtrack 16 Confronting Myself-b_oEDGONSc4-192k-1701362868.mp3"
+dest_files=["res://.godot/imported/onlymp3.to -  Official Celeste Original Soundtrack 16 Confronting Myself-b_oEDGONSc4-192k-1701362868.mp3-e113b19fc7f0a8ecaedae7d00d911b5e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

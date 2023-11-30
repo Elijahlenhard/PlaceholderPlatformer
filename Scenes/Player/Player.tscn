@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://cyb4hippeoqe8"]
+[gd_scene load_steps=109 format=3 uid="uid://cyb4hippeoqe8"]
 
 [ext_resource type="Texture2D" uid="uid://dmpje3ot8i6nj" path="res://Sprites/Player/Concept/48pixel idle/48pixelIdle1.png" id="1_4a8td"]
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_xt7yc"]
@@ -13,9 +13,20 @@
 [ext_resource type="Texture2D" uid="uid://d1eod78nnsrtv" path="res://Sprites/Player/Concept/48pixel idle/48pixelIdle10.png" id="10_un8s6"]
 [ext_resource type="Texture2D" uid="uid://b0gqv0gl1dgcl" path="res://Sprites/Player/Concept/48pixel idle/48pixelIdle11.png" id="11_2so05"]
 [ext_resource type="Texture2D" uid="uid://ch7pvl00x5jca" path="res://Sprites/Player/Concept/48pixel idle/48pixelIdle12.png" id="12_hfbwk"]
+[ext_resource type="Texture2D" uid="uid://beootgxayjpe6" path="res://Sprites/Player/Concept/FireJump1.png" id="14_ywh2l"]
+[ext_resource type="Texture2D" uid="uid://bmvt3i6y5scaq" path="res://Sprites/Player/Concept/FireJump2.png" id="15_tsson"]
+[ext_resource type="Texture2D" uid="uid://d3tcuss6qg2w3" path="res://Sprites/Player/Concept/FireJump3.png" id="16_q3sxc"]
+[ext_resource type="Texture2D" uid="uid://b70ykkbr5kvax" path="res://Sprites/Player/Concept/FireJump4.png" id="17_i2ibw"]
+[ext_resource type="Texture2D" uid="uid://d2jue1hacwayv" path="res://Sprites/Player/Concept/FireJump5.png" id="18_3amrd"]
+[ext_resource type="Texture2D" uid="uid://bw1abcnwkp0si" path="res://Sprites/Player/Concept/FireJump6.png" id="19_mo0xm"]
+[ext_resource type="Texture2D" uid="uid://ckg0f2kknk4ht" path="res://Sprites/Player/Concept/FireJump7.png" id="20_ap13t"]
+[ext_resource type="Texture2D" uid="uid://6bu3idlvoi6r" path="res://Sprites/Player/Concept/FireJump8.png" id="21_cw01k"]
 [ext_resource type="Texture2D" uid="uid://cuvqad70ubdef" path="res://Sprites/Player/Concept/48pixel idle/IceFormIdle1.png" id="22_1bx7l"]
+[ext_resource type="Texture2D" uid="uid://cwama3kil0k7w" path="res://Sprites/Player/Concept/FireJump9.png" id="22_sxngd"]
 [ext_resource type="Texture2D" uid="uid://u0q80qb331iw" path="res://Sprites/Player/Concept/48pixel idle/IceFormIdle2.png" id="23_6n8r5"]
+[ext_resource type="Texture2D" uid="uid://hc061v5bndhu" path="res://Sprites/Player/Concept/FireJump10.png" id="23_u2wrl"]
 [ext_resource type="Texture2D" uid="uid://dfo8rmisvivc7" path="res://Sprites/Player/Concept/48pixel idle/IceFormIdle3.png" id="24_qglo4"]
+[ext_resource type="Texture2D" uid="uid://vfvf80fglfv5" path="res://Sprites/Player/Concept/FireJump11.png" id="24_uhgxi"]
 [ext_resource type="Texture2D" uid="uid://c2jsypruufdqu" path="res://Sprites/Player/Concept/48pixel idle/IceFormIdle4.png" id="25_gshso"]
 [ext_resource type="Texture2D" uid="uid://dpu1quqnqd410" path="res://Sprites/Player/Concept/48pixel idle/IceFormIdle5.png" id="26_gs6dw"]
 [ext_resource type="Texture2D" uid="uid://befqerh7qq243" path="res://Sprites/Player/Concept/48pixel idle/IceFormIdle6.png" id="27_vrh3b"]
@@ -83,6 +94,16 @@
 [ext_resource type="Texture2D" uid="uid://c3rppvcmxeqbk" path="res://Sprites/Player/Concept/FormChange/IceToFire10.png" id="64_c6103"]
 [ext_resource type="Texture2D" uid="uid://cmag1x1f6rekp" path="res://Sprites/Player/Concept/FormChange/IceToFire11.png" id="65_rshk1"]
 [ext_resource type="Texture2D" uid="uid://ldsl2xoug0jd" path="res://Sprites/Player/Concept/FormChange/IceToFire12.png" id="66_58csa"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerFormChange.gd" id="84_mi5ik"]
+[ext_resource type="Texture2D" uid="uid://keuuvrsit0a6" path="res://Sprites/UI/FormChangeWheel1.png" id="85_qhk7c"]
+[ext_resource type="Texture2D" uid="uid://1a0gwvbokrun" path="res://Sprites/UI/FormChangeWheel2.png" id="86_k6kn1"]
+[ext_resource type="Texture2D" uid="uid://bu8d20udh2bqs" path="res://Sprites/UI/FormChangeWheel3.png" id="87_vsijb"]
+[ext_resource type="Texture2D" uid="uid://7rkvewuhpk0q" path="res://Sprites/UI/FormChangeWheel4.png" id="88_n7imv"]
+[ext_resource type="Texture2D" uid="uid://dxpbuf50kk4y" path="res://Sprites/UI/FormChangeWheel5.png" id="89_wext2"]
+[ext_resource type="Texture2D" uid="uid://cf8kuegmynod4" path="res://Sprites/UI/FormChangeWheel6.png" id="90_73qw6"]
+[ext_resource type="Texture2D" uid="uid://b53440mumfbwj" path="res://Sprites/UI/FormChangeWheel7.png" id="91_gvsu0"]
+[ext_resource type="Texture2D" uid="uid://b2ejfqn7e1yjj" path="res://Sprites/UI/FormChangeWheel8.png" id="92_amven"]
+[ext_resource type="Texture2D" uid="uid://c4mvuaag1pr0x" path="res://Sprites/UI/FormChangeWheel9.png" id="93_re27i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ysnm3"]
 animations = [{
@@ -126,6 +147,44 @@ animations = [{
 "loop": true,
 "name": &"fire_idle",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_ywh2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tsson")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_q3sxc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_i2ibw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_3amrd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_mo0xm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_ap13t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_cw01k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_sxngd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_u2wrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_uhgxi")
+}],
+"loop": true,
+"name": &"fire_jump",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -199,35 +258,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("34_suv00")
-}, {
-"duration": 1.0,
-"texture": ExtResource("35_ol24t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("36_d7m61")
-}, {
-"duration": 1.0,
-"texture": ExtResource("37_548aw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("38_jolca")
-}, {
-"duration": 1.0,
-"texture": ExtResource("39_0nurh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("40_4eki3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("41_rg5ca")
-}],
-"loop": true,
-"name": &"ice_run",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("42_4ywfm")
 }, {
 "duration": 1.0,
@@ -261,8 +291,37 @@ animations = [{
 "texture": ExtResource("52_sw4sq")
 }],
 "loop": false,
-"name": &"jump",
+"name": &"ice_jump",
 "speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("34_suv00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_ol24t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_d7m61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_548aw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_jolca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_0nurh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_4eki3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_rg5ca")
+}],
+"loop": true,
+"name": &"ice_run",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -354,36 +413,61 @@ size = Vector2(51, 151)
 radius = 23.0
 height = 146.0
 
-[sub_resource type="Environment" id="Environment_flsx1"]
-background_mode = 3
-background_color = Color(0.87451, 0.443137, 0, 1)
-glow_enabled = true
-glow_intensity = 3.57
-glow_strength = 1.65
-glow_blend_mode = 0
-glow_hdr_threshold = 1.5
-fog_light_energy = 3.8
-fog_sun_scatter = 1.55
-fog_density = 1.0
+[sub_resource type="SpriteFrames" id="SpriteFrames_k6ttf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("85_qhk7c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_k6kn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_vsijb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_n7imv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_wext2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_73qw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_gvsu0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_amven")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_re27i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("player_move")]
 script = ExtResource("1_xt7yc")
+player_move = NodePath("PlayerMove")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
 texture_filter = 1
 position = Vector2(4, -11)
 sprite_frames = SubResource("SpriteFrames_ysnm3")
-animation = &"ice_idle"
+animation = &"fire_jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 9)
 shape = SubResource("RectangleShape2D_5bsr8")
 
-[node name="PlayerMove" type="Node" parent="." node_paths=PackedStringArray("player", "state")]
+[node name="PlayerMove" type="Node" parent="." node_paths=PackedStringArray("player", "state", "player_form_change")]
 script = ExtResource("51_owvcy")
 player = NodePath("..")
 state = NodePath("../PlayerState")
+player_form_change = NodePath("../PlayerFormChange")
 
 [node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("state", "sprite", "player")]
 script = ExtResource("52_iqb2f")
@@ -412,6 +496,12 @@ player = NodePath("..")
 script = ExtResource("48_q13r4")
 state = NodePath("../PlayerState")
 
+[node name="PlayerFormChange" type="Node" parent="." node_paths=PackedStringArray("state", "form_change_ui")]
+process_mode = 3
+script = ExtResource("84_mi5ik")
+state = NodePath("../PlayerState")
+form_change_ui = NodePath("../FormChangeUi")
+
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 8
@@ -420,11 +510,14 @@ collision_mask = 8
 position = Vector2(2, 8)
 shape = SubResource("CapsuleShape2D_ikt5i")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_flsx1")
+[node name="FormChangeUi" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_k6ttf")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimationHandler" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="AnimationHandler" method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="health_depleted" from="PlayerDamage" to="." method="_on_player_damage_health_depleted"]
 [connection signal="form_changed" from="PlayerMiscInput" to="AnimationHandler" method="_on_player_misc_input_form_changed"]
+[connection signal="form_change_close" from="PlayerFormChange" to="." method="_on_player_form_change_close"]
+[connection signal="form_change_open" from="PlayerFormChange" to="." method="_on_player_form_change_open"]
 [connection signal="area_entered" from="Hitbox" to="PlayerDamage" method="_on_hitbox_area_entered"]

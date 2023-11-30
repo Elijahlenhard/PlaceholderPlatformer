@@ -119,17 +119,13 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="Environment" id="Environment_rura3"]
+[sub_resource type="Environment" id="Environment_mh116"]
 background_mode = 3
-background_color = Color(0.87451, 0.443137, 0, 1)
 glow_enabled = true
-glow_intensity = 3.57
-glow_strength = 1.65
+glow_intensity = 2.85
+glow_strength = 1.2
 glow_blend_mode = 0
-glow_hdr_threshold = 1.5
-fog_light_energy = 3.8
-fog_sun_scatter = 1.55
-fog_density = 1.0
+glow_hdr_threshold = 0.71
 
 [node name="Node2D" type="CharacterBody2D"]
 collision_layer = 4
@@ -155,6 +151,6 @@ position = Vector2(75, 18)
 polygon = PackedVector2Array(-63, -41, -56, -13, 71, -28, 74, 32, -11, 32, -63, 8, -75, -18)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_rura3")
+environment = SubResource("Environment_mh116")
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="Attack" method="_on_animated_sprite_2d_frame_changed"]
