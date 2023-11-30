@@ -64,17 +64,12 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="Environment" id="Environment_qxv4p"]
+[sub_resource type="Environment" id="Environment_oxt0t"]
 background_mode = 3
-background_color = Color(0.87451, 0.443137, 0, 1)
 glow_enabled = true
-glow_intensity = 1.47
-glow_strength = 1.6
-glow_blend_mode = 0
-glow_hdr_threshold = 1.5
-fog_light_energy = 3.8
-fog_sun_scatter = 1.55
-fog_density = 1.0
+glow_intensity = 2.45
+glow_strength = 1.35
+glow_hdr_threshold = 1.03
 
 [node name="Node2D" type="CharacterBody2D"]
 collision_layer = 4
@@ -100,4 +95,4 @@ scale = Vector2(0.970467, 1)
 polygon = PackedVector2Array(-92.7389, 58, -82.4345, 87, 13.3956, 77, 34.0042, 23, 9.27389, -2, -76.2519, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_qxv4p")
+environment = SubResource("Environment_oxt0t")

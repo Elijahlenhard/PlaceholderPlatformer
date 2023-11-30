@@ -5,6 +5,7 @@ signal hit
 
 @export var player: CharacterBody2D
 @export var state: PlayerState
+@export var player_form_change: PlayerFormChange
 
 @export var top_speed = 450
 @export var terminal_velocity = 1000
@@ -26,6 +27,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	#if(state.form_change_ui_open):
+	#	await(player_form_change.form_change_close)
 	time+= delta
 	var string_format = "(%f,%f)"
 	#print_debug(string_format % [time, -player.position.y])

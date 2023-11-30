@@ -27,6 +27,7 @@ var time_since_wall = 0
 var i_frames = 0
 
 var changing_form = false
+var form_change_ui_open = false
 var form = "fire"
 
 var attack_cd = 0

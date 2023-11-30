@@ -17,7 +17,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	await(!state.form_change_ui_open)
 	if (Input.is_action_just_pressed("attack")&&state.attack_cd<=0):
 		if(state.form=="fire"):
 			fire_fire_basic()

@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy7loaky8kfiy"]
+[gd_scene load_steps=13 format=3 uid="uid://dy7loaky8kfiy"]
 
 [ext_resource type="Script" path="res://Scenes/Worlds/LevelC.gd" id="1_wasw1"]
 [ext_resource type="PackedScene" uid="uid://sam2crkn2i14" path="res://Scenes/Misc/GameplayUi.tscn" id="2_a0eem"]
-[ext_resource type="AudioStream" uid="uid://cl70nnui4rhhf" path="res://Sounds/Music/Wasteland or Snowy area.mp3" id="3_5fddc"]
 [ext_resource type="Texture2D" uid="uid://ggn1pqgiwd77" path="res://Sprites/Tiles/IceLand/iceBricks-Sheet.png" id="4_ddclr"]
 [ext_resource type="Texture2D" uid="uid://cm8qtqvxaebhc" path="res://Sprites/Tiles/IceLand/IceSpikes.png" id="5_5uf07"]
 [ext_resource type="Script" path="res://Scripts/Misc/Camera2D.gd" id="6_tfet8"]
@@ -84,21 +83,15 @@ sources/1 = SubResource("TileSetAtlasSource_341jt")
 size = Vector2(28.5, 190)
 
 [node name="World" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_wasw1")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_a0eem")]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-41, 37)
-stream = ExtResource("3_5fddc")
-max_distance = 171571.0
-attenuation = 0.901249
-panning_strength = 0.0
-bus = &"Music"
-
 [node name="TileMap" type="TileMap" parent="."]
+process_mode = 1
 tile_set = SubResource("TileSet_d4sbi")
-cell_quadrant_size = 48
+rendering_quadrant_size = 48
 format = 2
 layer_0/tile_data = PackedInt32Array(524281, 262144, 6, 524282, 262144, 6, 524283, 262144, 6, 524284, 262144, 6, 524285, 262144, 6, 524286, 262144, 6, 524287, 262144, 6, 458752, 262144, 6, 458753, 262144, 6, 458754, 262144, 6, 458755, 262144, 6, 458756, 262144, 6, 458757, 262144, 6, 458758, 262144, 6, 458759, 262144, 6, 458760, 262144, 6, 458761, 262144, 6, 458762, 262144, 6, 458763, 262144, 6, 458764, 262144, 6, 458765, 262144, 6, 196601, 327680, 6, 262137, 327680, 7, 327673, 327680, 7, 393209, 327680, 7, 458745, 327680, 7, 196600, 262144, 6, 196599, 262144, 6, 458766, 262144, 6, 458767, 262144, 6, 458768, 262144, 6, 458769, 262144, 6, 458770, 262144, 6, 458771, 262144, 6, 458772, 262144, 6, 458773, 262144, 6, 458774, 327680, 7, 393236, 196608, 6, 393237, 262144, 6, 393238, 327680, 6, 524310, 327680, 7, 589846, 327680, 7, 655382, 327680, 7, 720918, 327680, 7, 786455, 262144, 6, 786456, 262144, 6, 786457, 262144, 6, 786461, 262144, 6, 786460, 262144, 6, 786459, 262144, 6, 786458, 262144, 6, 786454, 327680, 6, 786462, 262144, 6, 786463, 262144, 6, 786464, 262144, 6, 786465, 262144, 6, 786466, 262144, 6, 786467, 262144, 6, 786468, 262144, 6, 786469, 262144, 6, 720934, 196608, 7, 655398, 196608, 7, 589862, 196608, 7, 524326, 196608, 7, 458790, 196608, 7, 393254, 196608, 7, 196646, 196608, 7, 131110, 196608, 7, 65574, 196608, 7, 38, 196608, 7, 262182, 196608, 7, 327718, 196608, 7, 786470, 196608, 6)
 
@@ -138,5 +131,7 @@ script = ExtResource("9_pk5ll")
 position = Vector2(-408, 4)
 shape = SubResource("RectangleShape2D_koung")
 
+[connection signal="form_change_close" from="Player" to="." method="_on_player_form_change_close"]
+[connection signal="form_change_open" from="Player" to="." method="_on_player_form_change_open"]
 [connection signal="health_changed" from="Player" to="CanvasLayer" method="_on_player_health_changed"]
 [connection signal="area_entered" from="LevelATransition" to="." method="_on_level_a_transition_area_entered"]
