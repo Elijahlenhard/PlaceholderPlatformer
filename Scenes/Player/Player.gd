@@ -5,6 +5,8 @@ extends CharacterBody2D
 
 signal health_changed(previous_health: float, new_health:float)
 
+signal ability_resource_updated(current:int)
+
 signal form_change_open()
 signal form_change_close()
 
@@ -17,6 +19,7 @@ func _ready():
 	the_dot = preload("res://Scenes/Misc/theDot.tscn")
 
 func _process(delta):
+	print_debug(position)
 	return
 	if time>.05:
 		var dot_instance = the_dot.instantiate()
@@ -34,7 +37,9 @@ func _on_player_form_change_open():
 	get_tree().paused = true
 	form_change_open.emit()
 
-
 func _on_player_form_change_close():
 	get_tree().paused = false
 	form_change_close.emit()
+
+func _on_ability_resource_updated(current):
+	ability_resource_updated.emit(current)

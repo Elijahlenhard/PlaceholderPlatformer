@@ -12,6 +12,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(animation == null):
+		return
 	animation.flip_h = state.run_direction>0
 	if(state.dying):
 		animation.animation = "death"

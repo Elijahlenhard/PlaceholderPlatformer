@@ -1,8 +1,6 @@
 class_name DecrementHandler
 extends Node
 
-@export var state: PlayerState
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -10,47 +8,49 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	await(!state.form_change_ui_open)
-	if state.jump_primed>0:#if a jump is primed
-		state.jump_primed -=delta#decrement jump primed var
+	if PlayerState.jump_primed>0:#if a jump is primed
+		PlayerState.jump_primed -=delta#decrement jump primed var
 		
-	if(state.can_wall_jump == true && state.time_since_wall <= .1):
-		state.time_since_wall+=delta
+	if(PlayerState.can_wall_jump == true && PlayerState.time_since_wall <= .1):
+		PlayerState.time_since_wall+=delta
 		
-	if(state.can_wall_jump && state.time_since_wall >= .1):
-		state.can_wall_jump = false
-		state.time_since_wall = 0
+	if(PlayerState.can_wall_jump && PlayerState.time_since_wall >= .1):
+		PlayerState.can_wall_jump = false
+		PlayerState.time_since_wall = 0
 		
-	if(state.time_since_wall_jump<=state.wall_jump_time):
-		state.time_since_wall_jump +=delta
+	if(PlayerState.time_since_wall_jump<=PlayerState.wall_jump_time):
+		PlayerState.time_since_wall_jump +=delta
 	else:
-		state.is_wall_jumping = false
+		PlayerState.is_wall_jumping = false
 	
-	if(state.is_dashing):
-		state.dash_time += delta
-		if (state.dash_time > state.dash_length):
-			state.is_dashing = false
-			state.dash_time =0
+	if(PlayerState.is_dashing):
+		PlayerState.dash_time += delta
+		if (PlayerState.dash_time > PlayerState.dash_length):
+			PlayerState.is_dashing = false
+			PlayerState.dash_time =0
+	
+	if(PlayerState.ability_resource<2):
+		#TODO Add logic here to increase eavery 5 seconds
+		pass
 	
 	
-	
-	if(state.attack_cd>0):
-		state.attack_cd-=delta	
+	if(PlayerState.attack_cd>0):
+		PlayerState.attack_cd-=delta	
 		
-	if(state.i_frames>0):
-		state.i_frames-=delta
+	if(PlayerState.i_frames>0):
+		PlayerState.i_frames-=delta
 		
-	if(state.fire_wave_cd>0):
-		state.fire_wave_cd-=delta
+	if(PlayerState.fire_wave_cd>0):
+		PlayerState.fire_wave_cd-=delta
 		
-	if(state.ice_slam_cd>0):
-		state.ice_slam_cd-=delta
+	if(PlayerState.ice_slam_cd>0):
+		PlayerState.ice_slam_cd-=delta
 		
-	if(state.time_since_basic<2):
-		state.time_since_basic+=delta	
+	if(PlayerState.time_since_basic<2):
+		PlayerState.time_since_basic+=delta	
 	else:
-		state.attack_variation=1
+		PlayerState.attack_variation=1
 		
-	if(state.time_since_floor < state.coyote_time):
-		state.time_since_floor += delta
+	if(PlayerState.time_since_floor < PlayerState.coyote_time):
+		PlayerState.time_since_floor += delta
 	

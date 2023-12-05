@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://yhtik1dk1wej"]
+
+[ext_resource type="Script" path="res://Scenes/Camera/CameraBounds.gd" id="1_61x14"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_61x14")
