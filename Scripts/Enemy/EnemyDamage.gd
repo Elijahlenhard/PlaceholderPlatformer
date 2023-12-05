@@ -2,8 +2,11 @@ class_name EnemyDamage
 extends Node
 
 @export var enemy: CharacterBody2D
-@export var collision: Area2D
 @export var state: EnemyState
+@export var sounds: EnemySounds
+@export var collision: CollisionShape2D
+@export var hitBox: CollisionShape2D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,8 +28,9 @@ func _on_area_2d_body_entered(attack):
 	state.health -= damage
 	if(state.health<= 0):
 		state.dying = true
+		
 
-	
+	sounds.play_hit_sound()
 	
 	enemy.velocity.y = knock_back.y
 	enemy.velocity.x = sign(direction)*knock_back.x

@@ -2,12 +2,14 @@ class_name PlayerAttack
 extends Node
 
 @export var player: CharacterBody2D
-@export var state: PlayerState
+@export var sounds: PlayerSounds
 
-var fire_basic
-var fire_ability
-var ice_basic
-var ice_ability
+signal ability_resource_used(current:int)
+
+var fire_basic: Resource
+var fire_ability: Resource
+var ice_basic: Resource
+var ice_ability: Resource
 
 func _ready():
 	fire_basic = preload("res://Scenes/Attacks/FireBasic.tscn")
@@ -17,37 +19,36 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	await(!state.form_change_ui_open)
-	if (Input.is_action_just_pressed("attack")&&state.attack_cd<=0):
-		if(state.form=="fire"):
+	if (Input.is_action_just_pressed("attack")&&PlayerState.attack_cd<=0):
+		if(PlayerState.form=="fire"):
 			fire_fire_basic()
-		if(state.form=="ice"):
+		if(PlayerState.form=="ice"):
 			fire_ice_basic()
 	if (Input.is_action_just_pressed("ability")):
-		if(state.form=="fire"&&state.fire_wave_cd<=0):
+		if(PlayerState.form=="fire"):
 			fire_ability_fire()
-		if(state.form=="ice"&&state.ice_slam_cd<=0):
+		if(PlayerState.form=="ice"):
 			fire_ability_ice()
 	
 	if(Input.is_action_pressed("attack")):
-		state.attack_held_for+=delta
+		PlayerState.attack_held_for+=delta
 	else:
-		state.attack_held_for=0
+		PlayerState.attack_held_for=0
 func fire_fire_basic():
 	var attack_variation = 1
 	var offset = -15
 	var z_index = 3
-	state.attack_cd = state.fire_attack_speed
-	print(state.time_since_basic)
-	if(state.time_since_basic < 1):
-		state.attack_variation+=1
-		attack_variation = state.attack_variation
-		if(state.attack_variation==3):
-			state.attack_variation =0
-			state.attack_cd = state.fire_combo_cd
+	PlayerState.attack_cd = PlayerState.fire_attack_speed
+	print(PlayerState.time_since_basic)
+	if(PlayerState.time_since_basic < 1):
+		PlayerState.attack_variation+=1
+		attack_variation = PlayerState.attack_variation
+		if(PlayerState.attack_variation==3):
+			PlayerState.attack_variation =0
+			PlayerState.attack_cd = PlayerState.fire_combo_cd
 			
 	else:
-		state.attack_variation =1
+		PlayerState.attack_variation =1
 	print(attack_variation)
 	var attack_instance = fire_basic.instantiate()
 	attack_instance.set_name("attack")
@@ -57,8 +58,9 @@ func fire_fire_basic():
 		z_index = 1
 	var knock_back = Vector2(500, -350)
 	attack_node.knock_back = knock_back
-	attack_node.init(null, state.direction, 30, 1, offset, attack_variation, z_index)
-	state.time_since_basic = 0
+	attack_node.init(null, PlayerState.direction, 30, 1, offset, attack_variation, z_index)
+	PlayerState.time_since_basic = 0
+	sounds.play_fire_form_basic()
 
 func fire_fire_heavy():
 	var attack_variation = 1
@@ -70,32 +72,38 @@ func fire_fire_heavy():
 	var attack_node = attack_instance.get_node("Attack")
 	var knock_back = Vector2(800, -250)
 	attack_node.knock_back = knock_back
-	attack_node.init(null, state.direction, 25, 3, offset, "heavy", z_index)
-	state.time_since_basic = 0
+	attack_node.init(null, PlayerState.direction, 25, 3, offset, "heavy", z_index)
+	PlayerState.time_since_basic = 0
 func fire_ability_fire():
-	state.fire_wave_cd = state.fire_wave_max_cd
+	if(PlayerState.ability_resource==0):
+		return
+	PlayerState.fire_wave_cd = PlayerState.fire_wave_max_cd
 	var ability_instance = fire_ability.instantiate()
 	ability_instance.set_name("fire_wave")
 	var attack_node = ability_instance.get_node("Attack")
 	player.get_parent().add_child(ability_instance)
 	var knock_back = Vector2(1500, -250)
 	attack_node.knock_back = knock_back
-	attack_node.init(player.position, state.direction, 25, 2, 40, 0, 3)
-	player.velocity.x += sign(state.direction.x)*-1500
+	attack_node.init(player.position, PlayerState.direction, 25, 2, 40, 0, 3)
+	player.velocity.x += sign(PlayerState.direction.x)*-1500
+	sounds.play_fire_form_ability()
+	PlayerState.ability_resource-=1
+	ability_resource_used.emit(PlayerState.ability_resource)
+	
 	
 func fire_ice_basic():
 	var attack_variation = 1
 	var offset = 30
 	var z_index = 3
-	print(state.time_since_basic)
-	if(state.time_since_basic < 2):
-		state.attack_variation+=1
-		attack_variation = state.attack_variation
-		if(state.attack_variation==2):
-			state.attack_variation =0
-			state.attack_cd = state.fire_combo_cd
+	print(PlayerState.time_since_basic)
+	if(PlayerState.time_since_basic < 2):
+		PlayerState.attack_variation+=1
+		attack_variation = PlayerState.attack_variation
+		if(PlayerState.attack_variation==2):
+			PlayerState.attack_variation =0
+			PlayerState.attack_cd = PlayerState.fire_combo_cd
 		else:
-			state.attack_cd = state.fire_attack_speed
+			PlayerState.attack_cd = PlayerState.fire_attack_speed
 	
 	print(attack_variation)
 	var attack_instance = ice_basic.instantiate()
@@ -104,11 +112,13 @@ func fire_ice_basic():
 	var attack_node = attack_instance.get_node("Attack")
 	var knock_back = Vector2(250, -250)
 	attack_node.knock_back = knock_back
-	attack_node.init(null, state.direction, 25, 1, offset, attack_variation, z_index)
-	state.time_since_basic = 0
+	attack_node.init(null, PlayerState.direction, 25, 1, offset, attack_variation, z_index)
+	PlayerState.time_since_basic = 0
 
 func fire_ability_ice():
-	state.ice_slam_cd=state.ice_slam_max_cd
+	if(PlayerState.ability_resource==0):
+		return
+	PlayerState.ice_slam_cd=PlayerState.ice_slam_max_cd
 	var attack_variation = 0
 	var offset = 30
 	var z_index = 3
@@ -118,4 +128,6 @@ func fire_ability_ice():
 	var attack_node = ability_instance.get_node("Attack")
 	var knock_back = Vector2(250, -750)
 	attack_node.knock_back = knock_back
-	attack_node.init(null, state.direction, 50, 1, offset, attack_variation, z_index)
+	attack_node.init(null, PlayerState.direction, 50, 1, offset, attack_variation, z_index)
+	PlayerState.ability_resource-=1
+	ability_resource_used.emit(PlayerState.ability_resource)

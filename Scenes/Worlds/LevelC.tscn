@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dy7loaky8kfiy"]
+[gd_scene load_steps=14 format=3 uid="uid://dy7loaky8kfiy"]
 
-[ext_resource type="Script" path="res://Scenes/Worlds/LevelC.gd" id="1_wasw1"]
+[ext_resource type="Script" path="res://Scripts/World/Level.gd" id="1_ina6d"]
 [ext_resource type="PackedScene" uid="uid://sam2crkn2i14" path="res://Scenes/Misc/GameplayUi.tscn" id="2_a0eem"]
 [ext_resource type="Texture2D" uid="uid://ggn1pqgiwd77" path="res://Sprites/Tiles/IceLand/iceBricks-Sheet.png" id="4_ddclr"]
 [ext_resource type="Texture2D" uid="uid://cm8qtqvxaebhc" path="res://Sprites/Tiles/IceLand/IceSpikes.png" id="5_5uf07"]
 [ext_resource type="Script" path="res://Scripts/Misc/Camera2D.gd" id="6_tfet8"]
 [ext_resource type="PackedScene" uid="uid://cyb4hippeoqe8" path="res://Scenes/Player/Player.tscn" id="7_5gnxi"]
 [ext_resource type="PackedScene" uid="uid://c8ir2pi3xawgl" path="res://Scenes/Enemy/Enemy.tscn" id="8_k8go7"]
-[ext_resource type="Script" path="res://Scenes/Worlds/LevelATransition.gd" id="9_pk5ll"]
+[ext_resource type="AudioStream" uid="uid://ccwjl26g3yxgr" path="res://Sounds/Environment/EnergyField.mp3" id="9_1b6ti"]
+[ext_resource type="PackedScene" uid="uid://xvipxgiabq68" path="res://Scenes/Worlds/Level/LevelTransitionZone.tscn" id="9_87aam"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u1nom"]
 texture = ExtResource("4_ddclr")
@@ -79,12 +80,12 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_u1nom")
 sources/1 = SubResource("TileSetAtlasSource_341jt")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_koung"]
-size = Vector2(28.5, 190)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru5d4"]
+size = Vector2(20, 276.5)
 
 [node name="World" type="Node2D"]
 process_mode = 1
-script = ExtResource("1_wasw1")
+script = ExtResource("1_ina6d")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_a0eem")]
 
@@ -96,7 +97,6 @@ format = 2
 layer_0/tile_data = PackedInt32Array(524281, 262144, 6, 524282, 262144, 6, 524283, 262144, 6, 524284, 262144, 6, 524285, 262144, 6, 524286, 262144, 6, 524287, 262144, 6, 458752, 262144, 6, 458753, 262144, 6, 458754, 262144, 6, 458755, 262144, 6, 458756, 262144, 6, 458757, 262144, 6, 458758, 262144, 6, 458759, 262144, 6, 458760, 262144, 6, 458761, 262144, 6, 458762, 262144, 6, 458763, 262144, 6, 458764, 262144, 6, 458765, 262144, 6, 196601, 327680, 6, 262137, 327680, 7, 327673, 327680, 7, 393209, 327680, 7, 458745, 327680, 7, 196600, 262144, 6, 196599, 262144, 6, 458766, 262144, 6, 458767, 262144, 6, 458768, 262144, 6, 458769, 262144, 6, 458770, 262144, 6, 458771, 262144, 6, 458772, 262144, 6, 458773, 262144, 6, 458774, 327680, 7, 393236, 196608, 6, 393237, 262144, 6, 393238, 327680, 6, 524310, 327680, 7, 589846, 327680, 7, 655382, 327680, 7, 720918, 327680, 7, 786455, 262144, 6, 786456, 262144, 6, 786457, 262144, 6, 786461, 262144, 6, 786460, 262144, 6, 786459, 262144, 6, 786458, 262144, 6, 786454, 327680, 6, 786462, 262144, 6, 786463, 262144, 6, 786464, 262144, 6, 786465, 262144, 6, 786466, 262144, 6, 786467, 262144, 6, 786468, 262144, 6, 786469, 262144, 6, 720934, 196608, 7, 655398, 196608, 7, 589862, 196608, 7, 524326, 196608, 7, 458790, 196608, 7, 393254, 196608, 7, 196646, 196608, 7, 131110, 196608, 7, 65574, 196608, 7, 38, 196608, 7, 262182, 196608, 7, 327718, 196608, 7, 786470, 196608, 6)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(-323, 9)
 script = ExtResource("6_tfet8")
 target = NodePath("../Player")
 
@@ -122,16 +122,22 @@ position = Vector2(796, -68)
 [node name="Enemy 6" parent="." instance=ExtResource("8_k8go7")]
 position = Vector2(606, 32)
 
-[node name="LevelATransition" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 16
-script = ExtResource("9_pk5ll")
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1500, 348)
+stream = ExtResource("9_1b6ti")
+autoplay = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelATransition"]
-position = Vector2(-408, 4)
-shape = SubResource("RectangleShape2D_koung")
+[node name="TransitionA" parent="." instance=ExtResource("9_87aam")]
+from_level = "C"
+to_level = "A"
+to_level_spawn_location = Vector2(1370, 11)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionA"]
+position = Vector2(-420, -43.75)
+shape = SubResource("RectangleShape2D_ru5d4")
+
+[connection signal="ability_resource_updated" from="Player" to="CanvasLayer" method="_on_player_ability_resource_updated"]
 [connection signal="form_change_close" from="Player" to="." method="_on_player_form_change_close"]
 [connection signal="form_change_open" from="Player" to="." method="_on_player_form_change_open"]
 [connection signal="health_changed" from="Player" to="CanvasLayer" method="_on_player_health_changed"]
-[connection signal="area_entered" from="LevelATransition" to="." method="_on_level_a_transition_area_entered"]
+[connection signal="player_entered" from="TransitionA" to="." method="_on_level_transition"]

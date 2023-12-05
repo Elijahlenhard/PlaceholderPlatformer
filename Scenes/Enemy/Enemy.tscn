@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c8ir2pi3xawgl"]
+[gd_scene load_steps=21 format=3 uid="uid://c8ir2pi3xawgl"]
 
 [ext_resource type="Texture2D" uid="uid://dc6153cm4yayi" path="res://Sprites/Enemy/EnemyRun1.png" id="1_c01xs"]
 [ext_resource type="Texture2D" uid="uid://cohw5kcv5bkmo" path="res://Sprites/Enemy/enemyDeath/enemyDeath1.png" id="1_ct0dh"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ckvoraeciovxs" path="res://Sprites/Enemy/EnemyRun5.png" id="5_yq4y5"]
 [ext_resource type="Script" path="res://Scripts/Enemy/EnemyAnimations.gd" id="12_uaqd2"]
 [ext_resource type="Script" path="res://Scripts/Enemy/EnemyControl.gd" id="13_7d0sl"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemySounds.gd" id="17_v6br6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h8hpy"]
 animations = [{
@@ -95,11 +96,13 @@ enemy = NodePath("..")
 [node name="EnemyState" type="Node" parent="."]
 script = ExtResource("3_4n1vb")
 
-[node name="EnemyDamage" type="Node" parent="." node_paths=PackedStringArray("enemy", "collision", "state")]
+[node name="EnemyDamage" type="Node" parent="." node_paths=PackedStringArray("enemy", "state", "sounds", "collision", "hitBox")]
 script = ExtResource("4_oie1h")
 enemy = NodePath("..")
-collision = NodePath("../Area2D")
 state = NodePath("../EnemyState")
+sounds = NodePath("../EnemySounds")
+collision = NodePath("../CollisionShape2D")
+hitBox = NodePath("../Area2D/CollisionShape2D")
 
 [node name="EnemyAttack" type="Node" parent="."]
 script = ExtResource("5_nymq4")
@@ -115,6 +118,10 @@ script = ExtResource("13_7d0sl")
 enemy = NodePath("..")
 state = NodePath("../EnemyState")
 move = NodePath("../EnemyMove")
+
+[node name="EnemySounds" type="Node" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("17_v6br6")
+enemy = NodePath("..")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="EnemyAnimations" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="EnemyDamage" method="_on_area_2d_body_entered"]

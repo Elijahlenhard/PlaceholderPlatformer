@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://xvipxgiabq68"]
+
+[ext_resource type="Script" path="res://Scripts/Misc/Transition.gd" id="1_h27ms"]
+
+[node name="LevelTransitionZone" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_h27ms")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

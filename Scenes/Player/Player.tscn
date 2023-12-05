@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://cyb4hippeoqe8"]
+[gd_scene load_steps=108 format=3 uid="uid://cyb4hippeoqe8"]
 
 [ext_resource type="Texture2D" uid="uid://dmpje3ot8i6nj" path="res://Sprites/Player/Concept/48pixel idle/48pixelIdle1.png" id="1_4a8td"]
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_xt7yc"]
@@ -64,7 +64,6 @@
 [ext_resource type="Texture2D" uid="uid://c8cmd5oisv1qr" path="res://Sprites/Player/Concept/PrototypeJump5.png" id="46_sp277"]
 [ext_resource type="Texture2D" uid="uid://cs3otno1lvx28" path="res://Sprites/Player/Concept/PrototypeJump6.png" id="47_1yqpg"]
 [ext_resource type="Texture2D" uid="uid://pr2v371vxl01" path="res://Sprites/Player/Concept/FormChange/FireToIce6.png" id="47_ecncl"]
-[ext_resource type="Script" path="res://Scripts/Player/PlayerMiscInput.gd" id="48_q13r4"]
 [ext_resource type="Texture2D" uid="uid://fcqaxgqgegac" path="res://Sprites/Player/Concept/FormChange/FireToIce7.png" id="48_v8jp8"]
 [ext_resource type="Texture2D" uid="uid://bq0gonq6kntta" path="res://Sprites/Player/Concept/PrototypeJump7.png" id="48_wmmo6"]
 [ext_resource type="Texture2D" uid="uid://cdwipia3yyxct" path="res://Sprites/Player/Concept/FormChange/FireToIce8.png" id="49_cqwk6"]
@@ -78,7 +77,6 @@
 [ext_resource type="Script" path="res://Scripts/Player/animationHandler.gd" id="52_iqb2f"]
 [ext_resource type="Texture2D" uid="uid://rjeryl3ec86f" path="res://Sprites/Player/Concept/PrototypeJump11.png" id="52_sw4sq"]
 [ext_resource type="Texture2D" uid="uid://8jhwl77ylmk4" path="res://Sprites/Player/Concept/FormChange/FireToIce12.png" id="53_1pyfa"]
-[ext_resource type="Script" path="res://Scripts/Player/PlayerState.gd" id="53_xfuvb"]
 [ext_resource type="Script" path="res://Scripts/Player/playerAttack.gd" id="54_x43t8"]
 [ext_resource type="Script" path="res://Scripts/Player/decrementHandler.gd" id="55_1ffvl"]
 [ext_resource type="Texture2D" uid="uid://s510r72udrbw" path="res://Sprites/Player/Concept/FormChange/IceToFire1.png" id="55_3aqor"]
@@ -104,6 +102,7 @@
 [ext_resource type="Texture2D" uid="uid://b53440mumfbwj" path="res://Sprites/UI/FormChangeWheel7.png" id="91_gvsu0"]
 [ext_resource type="Texture2D" uid="uid://b2ejfqn7e1yjj" path="res://Sprites/UI/FormChangeWheel8.png" id="92_amven"]
 [ext_resource type="Texture2D" uid="uid://c4mvuaag1pr0x" path="res://Sprites/UI/FormChangeWheel9.png" id="93_re27i"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerSounds.gd" id="96_na5rc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ysnm3"]
 animations = [{
@@ -457,50 +456,42 @@ z_index = 2
 texture_filter = 1
 position = Vector2(4, -11)
 sprite_frames = SubResource("SpriteFrames_ysnm3")
-animation = &"fire_jump"
+animation = &"ice_idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 9)
 shape = SubResource("RectangleShape2D_5bsr8")
 
-[node name="PlayerMove" type="Node" parent="." node_paths=PackedStringArray("player", "state", "player_form_change")]
+[node name="PlayerMove" type="Node" parent="." node_paths=PackedStringArray("player", "player_form_change")]
 script = ExtResource("51_owvcy")
 player = NodePath("..")
-state = NodePath("../PlayerState")
 player_form_change = NodePath("../PlayerFormChange")
 
-[node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("state", "sprite", "player")]
+[node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("sprite", "player")]
 script = ExtResource("52_iqb2f")
-state = NodePath("../PlayerState")
 sprite = NodePath("../AnimatedSprite2D")
 player = NodePath("..")
 
-[node name="PlayerState" type="Node" parent="."]
-script = ExtResource("53_xfuvb")
-
-[node name="PlayerAttack" type="Node" parent="." node_paths=PackedStringArray("player", "state")]
+[node name="PlayerAttack" type="Node" parent="." node_paths=PackedStringArray("player", "sounds")]
 script = ExtResource("54_x43t8")
 player = NodePath("..")
-state = NodePath("../PlayerState")
+sounds = NodePath("../PlayerSounds")
 
-[node name="DecrementHandler" type="Node" parent="." node_paths=PackedStringArray("state")]
+[node name="DecrementHandler" type="Node" parent="."]
 script = ExtResource("55_1ffvl")
-state = NodePath("../PlayerState")
 
-[node name="PlayerDamage" type="Node" parent="." node_paths=PackedStringArray("state", "player")]
+[node name="PlayerDamage" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("56_st6ot")
-state = NodePath("../PlayerState")
 player = NodePath("..")
 
-[node name="PlayerMiscInput" type="Node" parent="." node_paths=PackedStringArray("state")]
-script = ExtResource("48_q13r4")
-state = NodePath("../PlayerState")
-
-[node name="PlayerFormChange" type="Node" parent="." node_paths=PackedStringArray("state", "form_change_ui")]
+[node name="PlayerFormChange" type="Node" parent="." node_paths=PackedStringArray("form_change_ui")]
 process_mode = 3
 script = ExtResource("84_mi5ik")
-state = NodePath("../PlayerState")
 form_change_ui = NodePath("../FormChangeUi")
+
+[node name="PlayerSounds" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("96_na5rc")
+player = NodePath("..")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 16
@@ -516,8 +507,9 @@ sprite_frames = SubResource("SpriteFrames_k6ttf")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimationHandler" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="AnimationHandler" method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="ability_resource_used" from="PlayerAttack" to="." method="_on_ability_resource_updated"]
 [connection signal="health_depleted" from="PlayerDamage" to="." method="_on_player_damage_health_depleted"]
-[connection signal="form_changed" from="PlayerMiscInput" to="AnimationHandler" method="_on_player_misc_input_form_changed"]
+[connection signal="ability_resource_updated" from="PlayerFormChange" to="." method="_on_ability_resource_updated"]
 [connection signal="form_change_close" from="PlayerFormChange" to="." method="_on_player_form_change_close"]
 [connection signal="form_change_open" from="PlayerFormChange" to="." method="_on_player_form_change_open"]
 [connection signal="area_entered" from="Hitbox" to="PlayerDamage" method="_on_hitbox_area_entered"]

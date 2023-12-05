@@ -1,4 +1,4 @@
-class_name PlayerState
+class_name PlayerStateSingleton
 extends Node
 
 @export var direction = Vector2(0,1)
@@ -42,3 +42,6 @@ var attack_held_for = 0
 
 var attack_variation = 1
 var time_since_basic = 2
+
+
+var ability_resource = 2

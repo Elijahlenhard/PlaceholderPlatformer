@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4jq5aq01sodd"]
+[gd_scene load_steps=8 format=3 uid="uid://c4jq5aq01sodd"]
 
 [ext_resource type="Script" path="res://Scenes/Game/Game.gd" id="1_681w2"]
-[ext_resource type="PackedScene" uid="uid://cxlndfcoygdt0" path="res://Scenes/Worlds/LevelB.tscn" id="2_nnpkg"]
+[ext_resource type="PackedScene" uid="uid://dftu16t82gc71" path="res://Scenes/Worlds/LevelOutsideIceTemple.tscn" id="2_rlc77"]
 [ext_resource type="Script" path="res://Scripts/Misc/LevelSpawns.gd" id="3_6i7y7"]
 [ext_resource type="PackedScene" path="res://Scenes/Misc/EscapeMenu.tscn" id="4_xcg8h"]
-[ext_resource type="AudioStream" uid="uid://bcvoyjppvebn2" path="res://Sounds/Music/TestMsuic.mp3" id="5_nijij"]
+[ext_resource type="AudioStream" uid="uid://cl70nnui4rhhf" path="res://Sounds/Music/Wasteland or Snowy area.mp3" id="5_gw7mw"]
 [ext_resource type="Script" path="res://Scripts/Player/GlobalPlayerState.gd" id="6_dwdw3"]
+[ext_resource type="Script" path="res://Scripts/Saves/SaveManager.gd" id="7_u8f5h"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("level_spawns", "audio_bus")]
 process_mode = 3
@@ -13,7 +14,7 @@ script = ExtResource("1_681w2")
 level_spawns = NodePath("LevelSpawns")
 audio_bus = NodePath("AudioStreamPlayer2D2")
 
-[node name="LevelB" parent="." instance=ExtResource("2_nnpkg")]
+[node name="LevelOutsideIceTemple" parent="." instance=ExtResource("2_rlc77")]
 
 [node name="LevelSpawns" type="Node" parent="."]
 script = ExtResource("3_6i7y7")
@@ -23,7 +24,8 @@ script = ExtResource("3_6i7y7")
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 position = Vector2(-41, 37)
-stream = ExtResource("5_nijij")
+stream = ExtResource("5_gw7mw")
+volume_db = -2.53
 max_distance = 171571.0
 panning_strength = 0.0
 bus = &"Music"
@@ -31,6 +33,8 @@ bus = &"Music"
 [node name="GlobalPlayerState" type="Node" parent="."]
 script = ExtResource("6_dwdw3")
 
-[connection signal="change_level" from="LevelB" to="." method="_on_level_change"]
-[connection signal="form_change_close" from="LevelB" to="." method="_on_level_b_form_change_close"]
-[connection signal="form_change_open" from="LevelB" to="." method="_on_level_b_form_change_open"]
+[node name="SaveManager" type="Node" parent="."]
+script = ExtResource("7_u8f5h")
+
+[connection signal="change_level" from="LevelOutsideIceTemple" to="." method="_on_level_change"]
+[connection signal="exit_pressed" from="CanvasLayer" to="SaveManager" method="_on_escape_menu_exit_pressed"]
