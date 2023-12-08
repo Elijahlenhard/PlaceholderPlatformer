@@ -1,6 +1,6 @@
 extends Node
 
-class_name WorldState
+class_name WorldState2
 
 var state: WorldData = WorldData.new()
 

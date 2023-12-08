@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://pcegsxfjenfh"]
+
+[ext_resource type="Script" path="res://Scenes/World/PlayerUpgradeOrb.gd" id="1_fhfi7"]
+
+[node name="PlayerUpgradeOrb" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_fhfi7")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

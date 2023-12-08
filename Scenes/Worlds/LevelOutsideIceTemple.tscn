@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dftu16t82gc71"]
+[gd_scene load_steps=39 format=3 uid="uid://dftu16t82gc71"]
 
 [ext_resource type="Script" path="res://Scripts/World/Level.gd" id="1_c0oge"]
 [ext_resource type="PackedScene" uid="uid://sam2crkn2i14" path="res://Scenes/Misc/GameplayUi.tscn" id="2_gdjtw"]
@@ -12,6 +12,20 @@
 [ext_resource type="Texture2D" uid="uid://duuc6bj0h7dms" path="res://Sprites/BackGrounds/Ice/FrontMountain.png" id="8_0pvkn"]
 [ext_resource type="PackedScene" uid="uid://xvipxgiabq68" path="res://Scenes/Worlds/Level/LevelTransitionZone.tscn" id="9_v7hsg"]
 [ext_resource type="PackedScene" uid="uid://yhtik1dk1wej" path="res://Scenes/Camera/CameraBounds.tscn" id="12_w3pkp"]
+[ext_resource type="Texture2D" uid="uid://bc6svwghxbq3g" path="res://Sprites/UI/heart.png" id="13_2jcp1"]
+[ext_resource type="PackedScene" uid="uid://pcegsxfjenfh" path="res://Scenes/World/PlayerUpgradeOrb.tscn" id="14_33xtb"]
+[ext_resource type="Texture2D" uid="uid://pnigj4cf5d7m" path="res://Sprites/Items/UpgradeOrb1.png" id="15_h5vvp"]
+[ext_resource type="Texture2D" uid="uid://ds3gvdp7te76b" path="res://Sprites/Items/UpgradeOrb2.png" id="16_uc1pm"]
+[ext_resource type="Texture2D" uid="uid://b7cdg0hl52qyy" path="res://Sprites/Items/UpgradeOrb3.png" id="17_wsh3a"]
+[ext_resource type="Texture2D" uid="uid://c8m2souenvc5i" path="res://Sprites/Items/UpgradeOrb4.png" id="18_4xpvm"]
+[ext_resource type="Texture2D" uid="uid://twd3sqdrtq3l" path="res://Sprites/Items/UpgradeOrb5.png" id="19_2jf4o"]
+[ext_resource type="Texture2D" uid="uid://doupdvade1267" path="res://Sprites/Items/UpgradeOrb6.png" id="20_wig3i"]
+[ext_resource type="Texture2D" uid="uid://b7ht55fi7ncmk" path="res://Sprites/Items/UpgradeOrb7.png" id="21_4kxfs"]
+[ext_resource type="Texture2D" uid="uid://d0782ldtp6hnt" path="res://Sprites/Items/UpgradeOrb8.png" id="22_lfdf7"]
+[ext_resource type="Texture2D" uid="uid://gwwq8jc4rrjw" path="res://Sprites/Items/UpgradeOrb9.png" id="23_f31d3"]
+[ext_resource type="Texture2D" uid="uid://qt4xrvjvcbss" path="res://Sprites/Items/UpgradeOrb10.png" id="24_6pwkd"]
+[ext_resource type="Texture2D" uid="uid://do0f3lph0h1vy" path="res://Sprites/Items/UpgradeOrb11.png" id="25_1e12y"]
+[ext_resource type="Texture2D" uid="uid://c7vv1nx32rlof" path="res://Sprites/Items/UpgradeOrb12.png" id="26_xrahe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pvbbf"]
 texture = ExtResource("4_ajism")
@@ -1247,17 +1261,80 @@ sources/0 = SubResource("TileSetAtlasSource_pvbbf")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ue0ta"]
 size = Vector2(35, 197)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5oit"]
+size = Vector2(2185, 559)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kn6pr"]
+size = Vector2(144, 948)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6oeq"]
+size = Vector2(489, 1233)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e41ik"]
+size = Vector2(1662.5, 0.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcg5r"]
+size = Vector2(1142, 417)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qrl20"]
+radius = 68.3593
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hpqs3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_h5vvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_uc1pm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_wsh3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_4xpvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2jf4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_wig3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_4kxfs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_lfdf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_f31d3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_6pwkd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_1e12y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_xrahe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="World" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_c0oge")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_gdjtw")]
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(243, 52)
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target", "camera_bounds")]
+position = Vector2(-1305, -684)
 process_callback = 0
 script = ExtResource("3_25ndm")
 target = NodePath("../Player")
+camera_bounds = NodePath("../CameraBounds")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_pm7yh")
@@ -1297,7 +1374,7 @@ centered = false
 [node name="Player" parent="." instance=ExtResource("4_jfk7h")]
 process_mode = 1
 z_index = 2
-position = Vector2(554, 490)
+position = Vector2(1249, -3)
 
 [node name="LevelTransitionZone" parent="." instance=ExtResource("9_v7hsg")]
 from_level = "OutsideIceTemple"
@@ -1310,8 +1387,42 @@ shape = SubResource("RectangleShape2D_ue0ta")
 
 [node name="CameraBounds" parent="." instance=ExtResource("12_w3pkp")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CameraBounds"]
-polygon = PackedVector2Array(1001, 275, -670, 274, -670, 1311, 960, 1302, 955, 903, 2114, 948, 2091, 1504, -1222, 1491, -1186, 211, -1177, -298, 1009, -291, 1017, -827, 1345, -823, 1300, 291, 3004, 302, 3026, -1587, -2142, -1344, -2042, 1949, 2890, 1806, 2427, 623, 1006, 587)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds"]
+position = Vector2(-88.5, -12.5)
+shape = SubResource("RectangleShape2D_q5oit")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="CameraBounds"]
+position = Vector2(1076, -351)
+shape = SubResource("RectangleShape2D_kn6pr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBounds"]
+position = Vector2(-936.5, 883.5)
+shape = SubResource("RectangleShape2D_t6oeq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CameraBounds"]
+position = Vector2(137, 1410.13)
+shape = SubResource("RectangleShape2D_e41ik")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="CameraBounds"]
+position = Vector2(1540, 1300.5)
+shape = SubResource("RectangleShape2D_rcg5r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("13_2jcp1")
+
+[node name="PlayerUpgradeOrb" parent="." instance=ExtResource("14_33xtb")]
+position = Vector2(-249, 452)
+upgrade = "wall_jump"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerUpgradeOrb"]
+position = Vector2(4, -1)
+shape = SubResource("CircleShape2D_qrl20")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerUpgradeOrb"]
+position = Vector2(4, -5)
+sprite_frames = SubResource("SpriteFrames_hpqs3")
+autoplay = "default"
 
 [connection signal="ability_resource_updated" from="Player" to="CanvasLayer" method="_on_player_ability_resource_updated"]
 [connection signal="form_change_close" from="Player" to="." method="_on_player_form_change_close"]

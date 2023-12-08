@@ -22,7 +22,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print_debug(hit_box.disabled)
 	if(sprite.frame==effective_frame):
 		hit_box.disabled=false
 		frame_played = true

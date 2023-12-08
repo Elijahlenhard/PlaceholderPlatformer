@@ -5,6 +5,8 @@ extends Node
 var time_jumping =0
 @export var max_jump_time = .66
 
+var running_frame = 0
+
 @export var g = 1
 var jump_primed = -1
 var jump_held
@@ -21,7 +23,8 @@ var is_jumping = false
 
 var can_wall_jump = false
 var is_wall_jumping = false
-var wall_jump_time = .2
+var wall_jump_time = .1
+var wall_jump_direction =1
 var time_since_wall_jump = .2
 var time_since_wall = 0
 var i_frames = 0
