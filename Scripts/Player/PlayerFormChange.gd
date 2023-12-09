@@ -22,7 +22,9 @@ func _process(delta):
 		form_change_ui.hide()
 		var last_form = PlayerState.form
 		PlayerState.form = get_form_from_wheel(selected_form)
+		PlayerState.attack_variation = 0
 		var new_form = PlayerState.form
+		
 		if(new_form != last_form && PlayerState.ability_resource<3):
 			PlayerState.ability_resource +=1
 			ability_resource_updated.emit(PlayerState.ability_resource)

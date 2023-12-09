@@ -14,8 +14,6 @@ signal hit
 
 var slower_gravity_zone = 100.0
 
-var time =0
-
 var lastPos = Vector2(0,0)
 var g = 0
 
@@ -27,31 +25,51 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	#if(PlayerState.form_change_ui_open):
-	#	await(player_form_change.form_change_close)
-	time+= delta
-	var string_format = "(%f,%f)"
-	#print_debug(string_format % [time, -player.position.y])
-	lastPos= player.position
+	
 	apply_gravity(delta)
 	
 	if(player.is_on_floor()):
 		PlayerState.time_since_floor=0
+		
+		
+
 	
 #region Input for dirrectional Control
 	#Checks for directional input and calls appropriate functions
-	if (Input.is_action_pressed("move_right")&&!PlayerState.is_dashing&&PlayerState.time_since_wall_jump>(PlayerState.wall_jump_time/2)):
+	if (Input.is_action_pressed("move_right")&&!PlayerState.is_dashing):
+	#&&(PlayerState.time_since_wall_jump>(PlayerState.wall_jump_time/2))|| PlayerState.wall_jump_direction == 1)):
+		if(PlayerState.running_frame+delta<PlayerConst.time_to_top_speed):
+			PlayerState.running_frame+=delta
+		else:
+			PlayerState.running_frame = PlayerConst.time_to_top_speed
 		#run(delta, 1)
 		PlayerState.direction.x =1 #Dash direction updated for direction character is facing
-		player.velocity.x = top_speed
-	elif (Input.is_action_pressed("move_left")&&!PlayerState.is_dashing&&PlayerState.time_since_wall_jump>(PlayerState.wall_jump_time/2)):
+		#run(delta, PlayerState.direction.x)
+		
+		#player.velocity.x = top_speed
+	elif (Input.is_action_pressed("move_left")&&!PlayerState.is_dashing):
+	#((PlayerState.time_since_wall_jump>(PlayerState.wall_jump_time/2))|| PlayerState.wall_jump_direction == -1)):
+		if(PlayerState.running_frame-delta>-PlayerConst.time_to_top_speed):
+			PlayerState.running_frame-=delta
+		else:
+			PlayerState.running_frame = -PlayerConst.time_to_top_speed
 		#run(delta, -1)
 		PlayerState.direction.x =-1#Dash direction updated for direction character is facing
-		player.velocity.x = -top_speed
+		#run(delta, PlayerState.direction.x)
+		
+		#player.velocity.x = -top_speed
 	elif(!PlayerState.is_dashing && !PlayerState.is_wall_jumping):
+		var new_frame = PlayerState.running_frame + -sign(player.velocity.x)*delta
+		if(sign(new_frame) == sign(player.velocity.x)):
+			PlayerState.running_frame = new_frame
+		else:
+			PlayerState.running_frame = 0
 		#run(delta, 0)#if no directional input, decelerate
-		player.velocity.x = 0
+		#player.velocity.x = 0
+		#decelerate(delta)
 #endregion
+	if(!PlayerState.is_wall_jumping):
+		run()
 		
 	#Primes a jump the frame the jump key is pressed
 	if Input.is_action_just_pressed("jump"):
@@ -76,11 +94,12 @@ func _physics_process(delta):
 	else:
 		PlayerState.time_jumping = 0
 		
-	if(player.is_on_wall()):
+	if(player.is_on_wall() && PersistantWorldState.unlocks["wall_jump"]):
 		PlayerState.can_wall_jump = true
 	
 	if(PlayerState.jump_primed>0 && PlayerState.can_wall_jump && !player.is_on_floor()):
 		wall_jump(delta)
+		
 	
 	
 	#if the dash key is hit and dash is off cool down call dash function
@@ -136,12 +155,17 @@ func wall_jump(delta):
 	PlayerState.is_wall_jumping = true
 	PlayerState.time_since_wall_jump = 0
 	player.velocity.y = 0
-	var speed = Vector2(400, -750)
+	var speed = Vector2(300, -750)
 	player.velocity.y+=speed.y
-	
+	PlayerState.running_frame = 0
+	PlayerState.wall_jump_direction = sign(player.get_wall_normal().x)
 	player.velocity.x = speed.x*player.get_wall_normal().x
 
-func run(delta, direction):
+func run():
+	player.velocity.x = MathUtil.get_speed_from_frame(PlayerState.running_frame)
+
+
+func run_old(delta, direction):
 	"""
 	var multiplier = 1.1*direction
 	var linear = 20*direction
@@ -172,15 +196,8 @@ func run(delta, direction):
 	
 	if(direction == 0 && abs(player.velocity.x) < 5):
 		player.velocity.x = 0
-func run_left(delta, direction):
-	var multiplier = 1.1*direction
-	var linear = -20
-	if(player.velocity.x>0 ||player.velocity.x<-(top_speed+25)):
-		decelerate(delta, 1)
-	elif(player.velocity.x>-top_speed):
-		player.velocity.x = player.velocity.x*multiplier + linear
 
-func decelerate(delta, rate):
+func decelerate_old(delta, rate):
 	if(PlayerState.is_dashing):
 		return
 	var deceleration = .95
@@ -195,7 +212,8 @@ func decelerate(delta, rate):
 		player.velocity.x = player.velocity.x*deceleration + linear
 
 func dash(delta):
-	player.velocity.x = 1500*PlayerState.direction.x
+	#player.velocity.x = 1500*PlayerState.direction.x
+	PlayerState.running_frame = .112*PlayerState.direction.x
 	player.velocity.y = 0
 		
 	

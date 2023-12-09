@@ -19,7 +19,6 @@ func _ready():
 	the_dot = preload("res://Scenes/Misc/theDot.tscn")
 
 func _process(delta):
-	print_debug(position)
 	return
 	if time>.05:
 		var dot_instance = the_dot.instantiate()
