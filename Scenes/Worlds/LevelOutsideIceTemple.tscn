@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dftu16t82gc71"]
+[gd_scene load_steps=40 format=3 uid="uid://dftu16t82gc71"]
 
 [ext_resource type="Script" path="res://Scripts/World/Level.gd" id="1_c0oge"]
 [ext_resource type="PackedScene" uid="uid://sam2crkn2i14" path="res://Scenes/Misc/GameplayUi.tscn" id="2_gdjtw"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://qt4xrvjvcbss" path="res://Sprites/Items/UpgradeOrb10.png" id="24_6pwkd"]
 [ext_resource type="Texture2D" uid="uid://do0f3lph0h1vy" path="res://Sprites/Items/UpgradeOrb11.png" id="25_1e12y"]
 [ext_resource type="Texture2D" uid="uid://c7vv1nx32rlof" path="res://Sprites/Items/UpgradeOrb12.png" id="26_xrahe"]
+[ext_resource type="PackedScene" uid="uid://dluw7wf5txq15" path="res://Scenes/Enemy/IceArea/IceWalker/IceWalker.tscn" id="27_gdqwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pvbbf"]
 texture = ExtResource("4_ajism")
@@ -1374,7 +1375,7 @@ centered = false
 [node name="Player" parent="." instance=ExtResource("4_jfk7h")]
 process_mode = 1
 z_index = 2
-position = Vector2(1249, -3)
+position = Vector2(406, 497)
 
 [node name="LevelTransitionZone" parent="." instance=ExtResource("9_v7hsg")]
 from_level = "OutsideIceTemple"
@@ -1412,7 +1413,7 @@ visible = false
 texture = ExtResource("13_2jcp1")
 
 [node name="PlayerUpgradeOrb" parent="." instance=ExtResource("14_33xtb")]
-position = Vector2(-249, 452)
+position = Vector2(125, 404)
 upgrade = "wall_jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerUpgradeOrb"]
@@ -1420,9 +1421,12 @@ position = Vector2(4, -1)
 shape = SubResource("CircleShape2D_qrl20")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerUpgradeOrb"]
-position = Vector2(4, -5)
+position = Vector2(2, -6)
 sprite_frames = SubResource("SpriteFrames_hpqs3")
 autoplay = "default"
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("27_gdqwv")]
+position = Vector2(-315, 434)
 
 [connection signal="ability_resource_updated" from="Player" to="CanvasLayer" method="_on_player_ability_resource_updated"]
 [connection signal="form_change_close" from="Player" to="." method="_on_player_form_change_close"]

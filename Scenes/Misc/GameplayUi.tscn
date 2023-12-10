@@ -47,6 +47,21 @@ texture_filter = 1
 position = Vector2(170, 64)
 texture = ExtResource("1_3nch6")
 
+[node name="Heart4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(225, 63)
+texture = ExtResource("1_3nch6")
+
+[node name="Heart5" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(279, 64)
+texture = ExtResource("1_3nch6")
+
+[node name="Heart6" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(333, 64)
+texture = ExtResource("1_3nch6")
+
 [node name="youDied" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1

@@ -24,7 +24,7 @@ func _on_hitbox_body_entered(body):
 	
 
 func _on_hitbox_area_entered(area):
-	if(PlayerState.i_frames>0):
+	if(PlayerState.i_frames>0 || PlayerState.is_dashing):
 		return
 	var enemyState = area.get_parent().get_node("EnemyState")
 	var vector_to_attack = area.global_position - player.global_position

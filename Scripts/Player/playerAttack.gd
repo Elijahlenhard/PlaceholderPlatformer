@@ -12,10 +12,10 @@ var ice_basic: Resource
 var ice_ability: Resource
 
 func _ready():
-	fire_basic = preload("res://Scenes/Attacks/FireBasic.tscn")
-	fire_ability = preload("res://Scenes/Attacks/FireWave.tscn")
-	ice_basic = preload("res://Scenes/Attacks/IceBasic.tscn")
-	ice_ability = preload("res://Scenes/Attacks/IceSlam.tscn")
+	fire_basic = preload("res://Scenes/Player/Attacks/FireBasic.tscn")
+	fire_ability = preload("res://Scenes/Player/Attacks/FireWave.tscn")
+	ice_basic = preload("res://Scenes/Player/Attacks/IceBasic.tscn")
+	ice_ability = preload("res://Scenes/Player/Attacks/IceSlam.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

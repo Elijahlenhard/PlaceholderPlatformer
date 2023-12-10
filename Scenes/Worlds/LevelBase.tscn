@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cm8qtqvxaebhc" path="res://Sprites/Tiles/IceLand/IceSpikes.png" id="4_jyk4t"]
 [ext_resource type="Script" path="res://Scripts/Misc/Camera2D.gd" id="5_awgon"]
 [ext_resource type="PackedScene" uid="uid://cyb4hippeoqe8" path="res://Scenes/Player/Player.tscn" id="6_5q6rw"]
-[ext_resource type="PackedScene" uid="uid://c8ir2pi3xawgl" path="res://Scenes/Enemy/Enemy.tscn" id="7_spqeo"]
+[ext_resource type="PackedScene" uid="uid://c8ir2pi3xawgl" path="res://Scenes/Enemy/EnemyTempate.tscn" id="7_spqeo"]
 [ext_resource type="PackedScene" uid="uid://xvipxgiabq68" path="res://Scenes/Worlds/Level/LevelTransitionZone.tscn" id="8_givnt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u1nom"]

@@ -117,6 +117,7 @@ func _physics_process(delta):
 		player.velocity.x=0
 		player.velocity.y=0
 	player.move_and_slide()
+
 	if(player.velocity.x == 0):
 		player.position.x = round(player.position.x)
 

@@ -30,9 +30,16 @@ func _process(delta):
 			PlayerState.dash_time =0
 	
 	if(PlayerState.ability_resource<2):
-		#TODO Add logic here to increase eavery 5 seconds
-		pass
+		PlayerState.ability_resource_charge +=delta
+		if(PlayerState.ability_resource_charge >=PlayerState.seconds_per_resource):
+			PlayerState.ability_resource+= 1
+			PlayerState.ability_resource_charge=0
+			
+	else:
+		PlayerState.ability_resource_charge = 0
 	
+	if(PlayerState.form_change_cd>0):
+		PlayerState.form_change_cd-=delta
 	
 	if(PlayerState.attack_cd>0):
 		PlayerState.attack_cd-=delta	
@@ -53,4 +60,6 @@ func _process(delta):
 		
 	if(PlayerState.time_since_floor < PlayerState.coyote_time):
 		PlayerState.time_since_floor += delta
+		
+	
 	

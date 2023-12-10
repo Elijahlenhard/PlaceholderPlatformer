@@ -1,6 +1,7 @@
 extends Node
 
 var unlocks: Dictionary
+var max_health = 5
 
 func _ready():
 	unlocks["dash"] = true

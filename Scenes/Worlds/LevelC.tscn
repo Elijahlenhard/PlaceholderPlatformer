@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cm8qtqvxaebhc" path="res://Sprites/Tiles/IceLand/IceSpikes.png" id="5_5uf07"]
 [ext_resource type="Script" path="res://Scripts/Misc/Camera2D.gd" id="6_tfet8"]
 [ext_resource type="PackedScene" uid="uid://cyb4hippeoqe8" path="res://Scenes/Player/Player.tscn" id="7_5gnxi"]
-[ext_resource type="PackedScene" uid="uid://c8ir2pi3xawgl" path="res://Scenes/Enemy/Enemy.tscn" id="8_k8go7"]
+[ext_resource type="PackedScene" uid="uid://c8ir2pi3xawgl" path="res://Scenes/Enemy/EnemyTempate.tscn" id="8_k8go7"]
 [ext_resource type="AudioStream" uid="uid://ccwjl26g3yxgr" path="res://Sounds/Environment/EnergyField.mp3" id="9_1b6ti"]
 [ext_resource type="PackedScene" uid="uid://xvipxgiabq68" path="res://Scenes/Worlds/Level/LevelTransitionZone.tscn" id="9_87aam"]
 [ext_resource type="PackedScene" uid="uid://yhtik1dk1wej" path="res://Scenes/Camera/CameraBounds.tscn" id="10_cyuqe"]
