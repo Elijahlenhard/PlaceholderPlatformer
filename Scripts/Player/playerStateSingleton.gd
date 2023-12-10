@@ -31,7 +31,10 @@ var i_frames = 0
 
 var changing_form = false
 var form_change_ui_open = false
+var form_change_cd = 0
+var form_change_cd_max = 5
 var form = "fire"
+var last_form = "fire"
 
 var attack_cd = 0
 var fire_attack_speed = .3
@@ -48,3 +51,8 @@ var time_since_basic = 2
 
 
 var ability_resource = 2
+var ability_resource_charge = 0
+var seconds_per_resource = 5
+
+func _ready():
+	health=PersistantWorldState.max_health

@@ -75,9 +75,8 @@ collision_mask = 2
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_h8hpy")
-animation = &"death"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PhysicsShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_o5yrl")
 
@@ -85,7 +84,7 @@ shape = SubResource("RectangleShape2D_o5yrl")
 collision_layer = 40
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="HitBlox" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_di6f2")
 
@@ -101,8 +100,8 @@ script = ExtResource("4_oie1h")
 enemy = NodePath("..")
 state = NodePath("../EnemyState")
 sounds = NodePath("../EnemySounds")
-collision = NodePath("../CollisionShape2D")
-hitBox = NodePath("../Area2D/CollisionShape2D")
+collision = NodePath("../PhysicsShape")
+hitBox = NodePath("../Area2D/HitBlox")
 
 [node name="EnemyAttack" type="Node" parent="."]
 script = ExtResource("5_nymq4")
@@ -122,6 +121,7 @@ move = NodePath("../EnemyMove")
 [node name="EnemySounds" type="Node" parent="." node_paths=PackedStringArray("enemy")]
 script = ExtResource("17_v6br6")
 enemy = NodePath("..")
+hit_sound_file = "res://Sounds/Enemy/IceArea/LittleCrab/test.mp3"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="EnemyAnimations" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="EnemyDamage" method="_on_area_2d_body_entered"]

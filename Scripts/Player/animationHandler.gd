@@ -4,6 +4,9 @@ extends Node
 @export var sprite: AnimatedSprite2D
 @export var player: CharacterBody2D
 
+var equiping = false
+var discarding = false
+
 var time = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -22,6 +25,12 @@ func _ready():
 func _process(delta):
 
 
+	if(discarding):
+		sprite.animation = PlayerState.last_form + "_discard"
+	if(equiping):
+		sprite.animation = PlayerState.form + "_equip"
+
+
 	if(PlayerState.is_dashing):
 		sprite.modulate = Color(1,1,1.5,1)
 	else:
@@ -30,12 +39,12 @@ func _process(delta):
 	sprite.flip_h = PlayerState.direction.x < 0
 	if(PlayerState.changing_form):
 		return
+		
 	if(player.velocity.x!=0):
 		sprite.animation = PlayerState.form + "_run"
 	else:
 		sprite.animation = PlayerState.form + "_idle"
 		
-	
 	var jump_frame = -1
 	
 	if(player.velocity.y>0):
@@ -49,6 +58,9 @@ func _process(delta):
 		var string_format = "(%f,%f)"
 	
 	
+	
+		
+	
 	time += delta
 func _on_player_misc_input_form_changed(old_form, new_form):
 	PlayerState.changing_form = true
@@ -58,3 +70,13 @@ func _on_player_misc_input_form_changed(old_form, new_form):
 func _on_animated_sprite_2d_animation_looped():
 	if("transform" in sprite.animation):
 		PlayerState.changing_form = false
+	if("discard" in sprite.animation):
+		discarding = false
+		equiping = true
+	if("equip" in sprite.animation):
+		equiping = false
+		PlayerState.changing_form = false
+
+
+func _on_player_form_change_close():
+	discarding = true

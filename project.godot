@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PlayerState="*res://Scripts/Player/playerStateSingleton.gd"
 PersistantWorldState="*res://Scripts/World/PersistantWorldStateSingleton.gd"
+EnemyHelper="*res://Scripts/Enemy/EnemyHelperSingleton.gd"
 
 [display]
 

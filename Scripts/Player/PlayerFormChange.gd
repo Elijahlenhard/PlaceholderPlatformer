@@ -12,12 +12,12 @@ signal form_change_close()
 signal ability_resource_updated()
 
 func _process(delta):
-	if(Input.is_action_just_pressed("form_change")):
+	if(Input.is_action_just_pressed("form_change")&&PlayerState.form_change_cd<=0):
 		PlayerState.form_change_ui_open = true
 		form_change_ui.show()
 		form_change_ui.frame=0
 		form_change_open.emit()
-	if(Input.is_action_just_released("form_change")):
+	if(Input.is_action_just_released("form_change")&&PlayerState.form_change_ui_open == true):
 		PlayerState.form_change_ui_open = false
 		form_change_ui.hide()
 		var last_form = PlayerState.form
@@ -29,6 +29,11 @@ func _process(delta):
 			PlayerState.ability_resource +=1
 			ability_resource_updated.emit(PlayerState.ability_resource)
 		form_change_close.emit()
+		
+		if(new_form!= last_form):
+			PlayerState.changing_form = true
+			PlayerState.last_form = last_form
+			PlayerState.form_change_cd = PlayerState.form_change_cd_max
 		
 		
 	if(PlayerState.form_change_ui_open):
