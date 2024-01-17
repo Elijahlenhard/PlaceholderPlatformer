@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddbyadb4r7wdm"
-path="res://.godot/imported/sprite_1.png-4c123202c8b92e3067fd7cbc994f9ea6.ctex"
+uid="uid://r7lv148xdgsx"
+path="res://.godot/imported/jump11.png-a96ad930a7862b4b31e9fe6f15188ba2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Attacks/sprite_1.png"
-dest_files=["res://.godot/imported/sprite_1.png-4c123202c8b92e3067fd7cbc994f9ea6.ctex"]
+source_file="res://Sprites/Player/PixelPerfectTest/Fire/Jump/jump11.png"
+dest_files=["res://.godot/imported/jump11.png-a96ad930a7862b4b31e9fe6f15188ba2.ctex"]
 
 [params]
 

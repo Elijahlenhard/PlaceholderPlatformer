@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rfpf6yt3k2aj"
-path="res://.godot/imported/sprite_0.png-d89bfeb4d3e1561588a73bf4ab2e6626.ctex"
+uid="uid://k57alvv3nvwo"
+path="res://.godot/imported/idle12.png-3857b4083687d1e184de64f8dfd58af2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Attacks/sprite_0.png"
-dest_files=["res://.godot/imported/sprite_0.png-d89bfeb4d3e1561588a73bf4ab2e6626.ctex"]
+source_file="res://Sprites/Player/PixelPerfectTest/Fire/Idle/idle12.png"
+dest_files=["res://.godot/imported/idle12.png-3857b4083687d1e184de64f8dfd58af2.ctex"]
 
 [params]
 

@@ -454,7 +454,7 @@ z_index = 2
 texture_filter = 1
 position = Vector2(4, -11)
 sprite_frames = SubResource("SpriteFrames_ysnm3")
-animation = &"ice_equip"
+animation = &"fire_equip"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 9)
@@ -501,6 +501,7 @@ shape = SubResource("CapsuleShape2D_ikt5i")
 
 [node name="FormChangeUi" type="AnimatedSprite2D" parent="."]
 visible = false
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_k6ttf")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimationHandler" method="_on_animated_sprite_2d_animation_finished"]

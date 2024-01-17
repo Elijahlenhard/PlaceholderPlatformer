@@ -30,10 +30,6 @@ func _process(delta):
 		if(PlayerState.form=="ice"):
 			fire_ability_ice()
 	
-	if(Input.is_action_pressed("attack")):
-		PlayerState.attack_held_for+=delta
-	else:
-		PlayerState.attack_held_for=0
 func fire_fire_basic():
 	var attack_variation = 1
 	var offset = -15
@@ -43,17 +39,14 @@ func fire_fire_basic():
 	if(PlayerState.time_since_basic < 1):
 		PlayerState.attack_variation+=1
 		attack_variation = PlayerState.attack_variation
-		if(PlayerState.attack_variation==3):
+		if(PlayerState.attack_variation==2):
 			PlayerState.attack_variation =0
 			PlayerState.attack_cd = PlayerState.fire_combo_cd
 			
 	else:
 		PlayerState.attack_variation =1
 	print(attack_variation)
-	var attack_instance = fire_basic.instantiate()
-	attack_instance.set_name("attack")
-	player.add_child(attack_instance)
-	var attack_node = attack_instance.get_node("Attack")
+	var attack_node = instantiate_attack(fire_basic)
 	if(attack_variation ==2):
 		z_index = 1
 	var knock_back = Vector2(500, -350)
@@ -62,18 +55,7 @@ func fire_fire_basic():
 	PlayerState.time_since_basic = 0
 	sounds.play_fire_form_basic()
 
-func fire_fire_heavy():
-	var attack_variation = 1
-	var offset = 40
-	var z_index = 3
-	var attack_instance = fire_basic.instantiate()
-	attack_instance.set_name("attack")
-	player.add_child(attack_instance)
-	var attack_node = attack_instance.get_node("Attack")
-	var knock_back = Vector2(800, -250)
-	attack_node.knock_back = knock_back
-	attack_node.init(null, PlayerState.direction, 25, 3, offset, "heavy", z_index)
-	PlayerState.time_since_basic = 0
+
 func fire_ability_fire():
 	if(PlayerState.ability_resource==0):
 		return
@@ -131,3 +113,10 @@ func fire_ability_ice():
 	attack_node.init(null, PlayerState.direction, 50, 1, offset, attack_variation, z_index)
 	PlayerState.ability_resource-=1
 	ability_resource_used.emit(PlayerState.ability_resource)
+	
+	
+func instantiate_attack(attack) -> Node:
+	var attack_instance = attack.instantiate()
+	attack_instance.set_name("attack")
+	player.add_child(attack_instance)
+	return attack_instance.get_node("Attack")
