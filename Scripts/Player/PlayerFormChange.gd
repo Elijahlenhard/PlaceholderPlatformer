@@ -37,16 +37,27 @@ func _process(delta):
 		
 		
 	if(PlayerState.form_change_ui_open):
+		var wheel_index = 0
 		if(Input.is_action_pressed("move_right")):
-			selected_form = 1
-		if(Input.is_action_pressed("move_left")):
-			selected_form = 5
-
-	if(PlayerState.form_change_ui_open):
-		form_change_ui.frame = selected_form
+			wheel_index += 5
+		elif(Input.is_action_pressed("move_left")):
+			wheel_index += 1
+		if(Input.is_action_pressed("move_up")):
+			wheel_index += 3
+		elif(Input.is_action_pressed("move_down")):
+			wheel_index += 6
+		
+		if(wheel_index != 0):
+			var temp_form = PlayerConst.form_wheel_frame[wheel_index]
+			if(temp_form!=null):
+				selected_form = temp_form
+			
+			form_change_ui.frame = selected_form
 
 
 func get_form_from_wheel(wheel_index):
+	return PlayerConst.form_wheel_string[wheel_index]
+	
 	if(wheel_index == 1):
 		return "fire"
 	if(wheel_index == 5):

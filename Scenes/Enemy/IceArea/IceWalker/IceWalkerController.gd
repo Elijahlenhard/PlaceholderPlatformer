@@ -3,7 +3,7 @@ extends Node
 
 @export var enemy: CharacterBody2D
 @export var g: float
-@export var move_speed: int
+@export var move_speed: float
 @export var state: EnemyState
 @export var attack_trigger_range: int
 @export var agro_range: int
@@ -41,4 +41,4 @@ func _process(delta):
 
 	
 func walk(direction: int):
-	enemy.velocity.x = move_speed*sign(direction)
+	enemy.velocity.x = lerp(enemy.velocity.x, move_speed*sign(direction), .05)

@@ -1,20 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4jq5aq01sodd"]
+[gd_scene load_steps=16 format=3 uid="uid://c4jq5aq01sodd"]
 
 [ext_resource type="Script" path="res://Scenes/Game/Game.gd" id="1_681w2"]
+[ext_resource type="Shader" path="res://Scenes/Game/Game.gdshader" id="1_ecbj7"]
 [ext_resource type="PackedScene" uid="uid://dftu16t82gc71" path="res://Scenes/Worlds/LevelOutsideIceTemple.tscn" id="2_rlc77"]
 [ext_resource type="Script" path="res://Scripts/Misc/LevelSpawns.gd" id="3_6i7y7"]
-[ext_resource type="PackedScene" path="res://Scenes/Misc/EscapeMenu.tscn" id="4_xcg8h"]
-[ext_resource type="AudioStream" uid="uid://cl70nnui4rhhf" path="res://Sounds/Music/Wasteland or Snowy area.mp3" id="5_gw7mw"]
+[ext_resource type="PackedScene" uid="uid://boixgvwwis80y" path="res://Scenes/Misc/EscapeMenu.tscn" id="4_xcg8h"]
+[ext_resource type="AudioStream" uid="uid://tr3vo173u4ex" path="res://Sounds/Music/Boss Music.mp3" id="5_kkjoa"]
 [ext_resource type="Script" path="res://Scripts/Player/GlobalPlayerState.gd" id="6_dwdw3"]
 [ext_resource type="Script" path="res://Scripts/Saves/SaveManager.gd" id="7_u8f5h"]
+[ext_resource type="Shader" path="res://Scenes/Game/Test2.gdshader" id="9_aaeep"]
+[ext_resource type="Shader" path="res://Scenes/Game/Areatransform.gdshader" id="10_qbmah"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_laim5"]
+shader = ExtResource("1_ecbj7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_patdq"]
+shader = ExtResource("9_aaeep")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qwnmb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugvci"]
+shader = ExtResource("10_qbmah")
+
+[sub_resource type="ImageTexture" id="ImageTexture_ex2cx"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("level_spawns", "audio_bus")]
 process_mode = 3
+texture_filter = 1
+material = SubResource("ShaderMaterial_laim5")
 script = ExtResource("1_681w2")
 level_spawns = NodePath("LevelSpawns")
 audio_bus = NodePath("AudioStreamPlayer2D2")
-
-[node name="LevelOutsideIceTemple" parent="." instance=ExtResource("2_rlc77")]
 
 [node name="LevelSpawns" type="Node" parent="."]
 script = ExtResource("3_6i7y7")
@@ -24,8 +40,8 @@ script = ExtResource("3_6i7y7")
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 position = Vector2(-41, 37)
-stream = ExtResource("5_gw7mw")
-volume_db = -2.53
+stream = ExtResource("5_kkjoa")
+volume_db = -8.973
 max_distance = 171571.0
 panning_strength = 0.0
 bus = &"Music"
@@ -36,5 +52,28 @@ script = ExtResource("6_dwdw3")
 [node name="SaveManager" type="Node" parent="."]
 script = ExtResource("7_u8f5h")
 
-[connection signal="change_level" from="LevelOutsideIceTemple" to="." method="_on_level_change"]
+[node name="LevelOutsideIceTemple" parent="." instance=ExtResource("2_rlc77")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer2"]
+z_index = 10
+texture_filter = 1
+material = SubResource("ShaderMaterial_patdq")
+position = Vector2(6396, -1256)
+scale = Vector2(8762, -6109)
+texture = SubResource("PlaceholderTexture2D_qwnmb")
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer3"]
+z_index = 10
+texture_filter = 1
+material = SubResource("ShaderMaterial_ugvci")
+position = Vector2(393, 496)
+scale = Vector2(712.25, -241.514)
+texture = SubResource("ImageTexture_ex2cx")
+
 [connection signal="exit_pressed" from="CanvasLayer" to="SaveManager" method="_on_escape_menu_exit_pressed"]
+[connection signal="change_level" from="LevelOutsideIceTemple" to="." method="_on_level_change"]

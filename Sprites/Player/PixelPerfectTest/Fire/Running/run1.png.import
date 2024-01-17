@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7drkk5oc4x3e"
-path="res://.godot/imported/sprite_4.png-bd0b40a02c6c1ecda5251b0c7caa93fc.ctex"
+uid="uid://tj3tiji75rw0"
+path="res://.godot/imported/run1.png-5a368deee5d3a162fc60f860010a7c77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Attacks/sprite_4.png"
-dest_files=["res://.godot/imported/sprite_4.png-bd0b40a02c6c1ecda5251b0c7caa93fc.ctex"]
+source_file="res://Sprites/Player/PixelPerfectTest/Fire/Running/run1.png"
+dest_files=["res://.godot/imported/run1.png-5a368deee5d3a162fc60f860010a7c77.ctex"]
 
 [params]
 

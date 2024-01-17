@@ -12,7 +12,7 @@ signal hit
 @export var jump_height = 960000
 @export var jump_peak_time = 30
 
-var slower_gravity_zone = 100.0
+@export var slower_gravity_zone = 100.0
 
 var lastPos = Vector2(0,0)
 var g = 0
@@ -124,6 +124,8 @@ func _physics_process(delta):
 	
 func apply_gravity(delta):
 	
+	var modified_terminal_velocity = terminal_velocity
+	
 	var mod = 1.5
 	if(PlayerState.jump_held):
 		mod = 1.3
@@ -131,9 +133,12 @@ func apply_gravity(delta):
 		mod = lerp(.7, 1.5, abs(player.velocity.y)/slower_gravity_zone)
 	elif(!PlayerState.jump_held && player.velocity.y<0 && PlayerState.time_since_wall_jump>PlayerState.wall_jump_time):
 		mod = 4
+	elif(player.is_on_wall() && PersistantWorldState.unlocks["wall_jump"]):
+		mod = .3
+		modified_terminal_velocity = .3*modified_terminal_velocity
 	if (!player.is_on_floor()):
 		player.velocity.y += g*delta*mod
-		player.velocity.y = clamp(player.velocity.y, 2*-terminal_velocity, terminal_velocity)
+		player.velocity.y = clamp(player.velocity.y, 2*-terminal_velocity, modified_terminal_velocity)
 	"""
 	var linear = 2000
 	if (!player.is_on_floor()):
@@ -156,7 +161,7 @@ func wall_jump(delta):
 	PlayerState.is_wall_jumping = true
 	PlayerState.time_since_wall_jump = 0
 	player.velocity.y = 0
-	var speed = Vector2(300, -750)
+	var speed = Vector2(300, -850)
 	player.velocity.y+=speed.y
 	PlayerState.running_frame = 0
 	PlayerState.wall_jump_direction = sign(player.get_wall_normal().x)
