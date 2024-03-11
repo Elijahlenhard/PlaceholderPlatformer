@@ -49,6 +49,8 @@ var attack_held_for = 0
 var attack_variation = 1
 var time_since_basic = 2
 
+var player_location = Vector2(0,0)
+
 
 var ability_resource = 2
 var ability_resource_charge = 0

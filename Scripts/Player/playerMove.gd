@@ -120,6 +120,8 @@ func _physics_process(delta):
 
 	if(player.velocity.x == 0):
 		player.position.x = round(player.position.x)
+		
+	PlayerState.player_location = player.position
 
 	
 func apply_gravity(delta):

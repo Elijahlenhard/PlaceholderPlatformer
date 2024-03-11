@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dftu16t82gc71"]
+[gd_scene load_steps=43 format=3 uid="uid://dftu16t82gc71"]
 
 [ext_resource type="Script" path="res://Scripts/World/Level.gd" id="1_c0oge"]
 [ext_resource type="PackedScene" uid="uid://sam2crkn2i14" path="res://Scenes/Misc/GameplayUi.tscn" id="2_gdjtw"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://do0f3lph0h1vy" path="res://Sprites/Items/UpgradeOrb11.png" id="25_1e12y"]
 [ext_resource type="Texture2D" uid="uid://c7vv1nx32rlof" path="res://Sprites/Items/UpgradeOrb12.png" id="26_xrahe"]
 [ext_resource type="PackedScene" uid="uid://dluw7wf5txq15" path="res://Scenes/Enemy/IceArea/IceWalker/IceWalker.tscn" id="27_gdqwv"]
+[ext_resource type="PackedScene" uid="uid://bmpmn0dn68yb1" path="res://Scenes/Enemy/IceArea/Rockwisp/Rockwisp.tscn" id="29_27n7w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pvbbf"]
 texture = ExtResource("4_ajism")
@@ -1434,6 +1435,9 @@ autoplay = "default"
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("27_gdqwv")]
 position = Vector2(-315, 434)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("29_27n7w")]
+position = Vector2(1337, -54)
 
 [connection signal="ability_resource_updated" from="Player" to="CanvasLayer" method="_on_player_ability_resource_updated"]
 [connection signal="form_change_close" from="Player" to="." method="_on_player_form_change_close"]
