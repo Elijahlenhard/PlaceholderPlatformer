@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbte2ffx4yhd1"
+path="res://.godot/imported/Maybe Boss Music.mp3-c095621ecff91863e9320895962c5bc2.mp3str"
+
+[deps]
+
+source_file="res://Scenes/Enemy/IceArea/Rockwisp/Maybe Boss Music.mp3"
+dest_files=["res://.godot/imported/Maybe Boss Music.mp3-c095621ecff91863e9320895962c5bc2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

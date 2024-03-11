@@ -1,0 +1,357 @@
+[gd_scene load_steps=65 format=3 uid="uid://bmpmn0dn68yb1"]
+
+[ext_resource type="Texture2D" uid="uid://birrossed0v3n" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack1.png" id="1_2rfex"]
+[ext_resource type="Texture2D" uid="uid://defyjlp7impit" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack2.png" id="2_p1cxd"]
+[ext_resource type="Texture2D" uid="uid://dgkuu5pncwd4x" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack3.png" id="3_sy1rf"]
+[ext_resource type="Texture2D" uid="uid://c2avo5kr3nq6v" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack4.png" id="4_xovr0"]
+[ext_resource type="Texture2D" uid="uid://0s6isqx6lgp8" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack5.png" id="5_ftmk7"]
+[ext_resource type="Texture2D" uid="uid://ho8rximeldet" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack6.png" id="6_2f6y4"]
+[ext_resource type="Texture2D" uid="uid://c4iqr4wq4cpde" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack7.png" id="7_mi13g"]
+[ext_resource type="Texture2D" uid="uid://8gyraq30scbp" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack8.png" id="8_l0uu6"]
+[ext_resource type="Texture2D" uid="uid://b8n3ch2iy4tge" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack9.png" id="9_c1ufg"]
+[ext_resource type="Texture2D" uid="uid://iq4nddpvmoy0" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack10.png" id="10_3aj65"]
+[ext_resource type="Texture2D" uid="uid://bde8qpwxe28wk" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack11.png" id="11_w5ha7"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemyState.gd" id="12_1yvdu"]
+[ext_resource type="Texture2D" uid="uid://c4gnhkyh5jais" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack12.png" id="12_8bpf7"]
+[ext_resource type="Texture2D" uid="uid://5s4rsgym66ur" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack13.png" id="13_73eo8"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemyDamage.gd" id="13_hbeij"]
+[ext_resource type="Texture2D" uid="uid://c11elkm34d1p" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack14.png" id="14_tqp3r"]
+[ext_resource type="Texture2D" uid="uid://c8nc3y410c51b" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack15.png" id="15_7bef0"]
+[ext_resource type="Texture2D" uid="uid://cwkndrphlfy1t" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack16.png" id="16_t5cx7"]
+[ext_resource type="Texture2D" uid="uid://de2ekk0lec6bu" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack17.png" id="17_i7mjb"]
+[ext_resource type="Texture2D" uid="uid://b57wr4ex2xb5g" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack18.png" id="18_2uptb"]
+[ext_resource type="Texture2D" uid="uid://yiniblr1cxtn" path="res://Sprites/Enemy/IceZone/littleguy explode/attack/attack19.png" id="19_r7r4r"]
+[ext_resource type="Texture2D" uid="uid://cc8vfrtqelo2u" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar1.png" id="20_t1xad"]
+[ext_resource type="Texture2D" uid="uid://c83gm2uio34kn" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar2.png" id="21_3i813"]
+[ext_resource type="Texture2D" uid="uid://broe1crdgr1ht" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar3.png" id="22_0jc0p"]
+[ext_resource type="Texture2D" uid="uid://bykyji678hi6e" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar4.png" id="23_jmtvr"]
+[ext_resource type="Texture2D" uid="uid://de04mgd7efj5" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar5.png" id="24_14cas"]
+[ext_resource type="Texture2D" uid="uid://dqjooub1kqifn" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar6.png" id="25_s1twe"]
+[ext_resource type="Texture2D" uid="uid://sf2sbj3knfjx" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar7.png" id="26_lloa7"]
+[ext_resource type="Texture2D" uid="uid://bm661lvmtpshs" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar8.png" id="27_hd1p3"]
+[ext_resource type="Texture2D" uid="uid://dwibf106t00lw" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar9.png" id="28_xnabs"]
+[ext_resource type="Texture2D" uid="uid://b3lkuy15gueb1" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle1.png" id="29_km05m"]
+[ext_resource type="Texture2D" uid="uid://cqncfg7g7kg0m" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle2.png" id="30_7nuqf"]
+[ext_resource type="Texture2D" uid="uid://bvnl0s7rh5x88" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle3.png" id="31_gjmsx"]
+[ext_resource type="Texture2D" uid="uid://crvp1bcmup3qt" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle4.png" id="32_esfpt"]
+[ext_resource type="Texture2D" uid="uid://spgkdd10a6gx" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle5.png" id="33_jo7k4"]
+[ext_resource type="Texture2D" uid="uid://bfm3o45lp3g84" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle6.png" id="34_yis0i"]
+[ext_resource type="Texture2D" uid="uid://bmns0jdkjlan6" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle7.png" id="35_ohhbf"]
+[ext_resource type="Texture2D" uid="uid://c6g4bgx2ln8io" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle8.png" id="36_4n2cr"]
+[ext_resource type="Texture2D" uid="uid://dht38i4dconvw" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle9.png" id="37_lqlp4"]
+[ext_resource type="Texture2D" uid="uid://foqbpsg64xik" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle10.png" id="38_b46dm"]
+[ext_resource type="Texture2D" uid="uid://c2d6cwarn4ii" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle11.png" id="39_cv8ib"]
+[ext_resource type="Texture2D" uid="uid://cl2cu3kagp4kp" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle12.png" id="40_2iqp5"]
+[ext_resource type="Texture2D" uid="uid://dqqocv7b7hon1" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle13.png" id="41_43su6"]
+[ext_resource type="Texture2D" uid="uid://crks6ta50iayb" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle14.png" id="42_gxcbh"]
+[ext_resource type="Texture2D" uid="uid://c5lqngf5yad61" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle15.png" id="43_gu57p"]
+[ext_resource type="Texture2D" uid="uid://u67iftvtcqyq" path="res://Sprites/Enemy/IceZone/littleguy explode/idle/idle16.png" id="44_faqto"]
+[ext_resource type="Texture2D" uid="uid://bykigybq8aun2" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar10.png" id="45_p7bs2"]
+[ext_resource type="Texture2D" uid="uid://c6cw0fkcstswo" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar11.png" id="46_se4vx"]
+[ext_resource type="Texture2D" uid="uid://buj3suqwb8lfs" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar12.png" id="47_05k2a"]
+[ext_resource type="Texture2D" uid="uid://ba4alls1sddnd" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar13.png" id="48_y0aqj"]
+[ext_resource type="Texture2D" uid="uid://dwr4877pemd6k" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar14.png" id="49_nuj5m"]
+[ext_resource type="Texture2D" uid="uid://t13eyl313t4" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar15.png" id="50_b3xf2"]
+[ext_resource type="Texture2D" uid="uid://dewddo8cek15u" path="res://Sprites/Enemy/IceZone/littleguy explode/idlevar/idlevar16.png" id="51_gwwd8"]
+[ext_resource type="Script" path="res://Scenes/Enemy/IceArea/Rockwisp/RockWispCommon.gd" id="54_jbuap"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemySounds.gd" id="55_3ke14"]
+[ext_resource type="Script" path="res://Scenes/Enemy/IceArea/Rockwisp/RockWispFollow.gd" id="57_a72qv"]
+[ext_resource type="Script" path="res://Scenes/Enemy/IceArea/Rockwisp/RockWispAttack.gd" id="58_irfyw"]
+[ext_resource type="Script" path="res://Scripts/Common/StateMachine.gd" id="58_md6kc"]
+[ext_resource type="Script" path="res://Scenes/Enemy/IceArea/Rockwisp/RockWispIdle.gd" id="59_2g52g"]
+[ext_resource type="Script" path="res://Scenes/Enemy/IceArea/Rockwisp/RockWispDying.gd" id="60_nmft4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8hpy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2rfex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_p1cxd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sy1rf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xovr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ftmk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2f6y4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mi13g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_l0uu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_c1ufg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3aj65")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_w5ha7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8bpf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_73eo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_tqp3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_7bef0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_t5cx7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_i7mjb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_2uptb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_r7r4r")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_t1xad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3i813")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_0jc0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_jmtvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_14cas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_s1twe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_lloa7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_hd1p3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_xnabs")
+}],
+"loop": false,
+"name": &"death",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_km05m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_7nuqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_gjmsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_esfpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_jo7k4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_yis0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_ohhbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_4n2cr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_lqlp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_b46dm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_cv8ib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_2iqp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_43su6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_gxcbh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_gu57p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_faqto")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_t1xad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3i813")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_0jc0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_jmtvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_14cas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_s1twe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_lloa7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_hd1p3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_xnabs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_p7bs2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_se4vx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_05k2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_y0aqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_nuj5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_b3xf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_gwwd8")
+}],
+"loop": true,
+"name": &"idlevar",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5yrl"]
+size = Vector2(72, 54)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_di6f2"]
+radius = 37.0
+height = 84.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbihd"]
+radius = 159.013
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_h8hpy")
+animation = &"attack"
+
+[node name="PhysicsShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_o5yrl")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 40
+collision_mask = 4
+
+[node name="HitBlox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_di6f2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 13)
+shape = SubResource("CircleShape2D_bbihd")
+disabled = true
+
+[node name="EnemyState" type="Node" parent="."]
+script = ExtResource("12_1yvdu")
+
+[node name="EnemyDamage" type="Node" parent="." node_paths=PackedStringArray("enemy", "state", "sounds", "collision", "hitBox")]
+script = ExtResource("13_hbeij")
+enemy = NodePath("..")
+state = NodePath("../EnemyState")
+sounds = NodePath("../EnemySounds")
+collision = NodePath("../PhysicsShape")
+hitBox = NodePath("../Area2D/HitBlox")
+
+[node name="Common" type="Node" parent="." node_paths=PackedStringArray("animation")]
+script = ExtResource("54_jbuap")
+animation = NodePath("../AnimatedSprite2D")
+agro_range = 500.0
+move_speed = 125.0
+attack_range = 160.0
+top_speed = 800.0
+attack_charge_time = 0.7
+
+[node name="EnemySounds" type="Node" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("55_3ke14")
+enemy = NodePath("..")
+hit_sound_file = "res://Sounds/Enemy/IceArea/LittleCrab/test.mp3"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("58_md6kc")
+initial_state = NodePath("RockWispIdle")
+
+[node name="RockWispIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation", "common", "enemy")]
+script = ExtResource("59_2g52g")
+animation = NodePath("../../AnimatedSprite2D")
+common = NodePath("../../Common")
+enemy = NodePath("../..")
+
+[node name="RockWispFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation", "common", "enemy")]
+script = ExtResource("57_a72qv")
+animation = NodePath("../../AnimatedSprite2D")
+common = NodePath("../../Common")
+enemy = NodePath("../..")
+
+[node name="RockWispAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation", "common", "attack_hitbox", "enemy")]
+script = ExtResource("58_irfyw")
+animation = NodePath("../../AnimatedSprite2D")
+common = NodePath("../../Common")
+attack_hitbox = NodePath("../../Area2D/CollisionShape2D")
+enemy = NodePath("../..")
+
+[node name="RockWispDying" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation", "hitbox", "attack_box")]
+script = ExtResource("60_nmft4")
+animation = NodePath("../../AnimatedSprite2D")
+hitbox = NodePath("../../Area2D/HitBlox")
+attack_box = NodePath("../../Area2D/CollisionShape2D")
+
+[connection signal="body_entered" from="Area2D" to="EnemyDamage" method="_on_area_2d_body_entered"]
